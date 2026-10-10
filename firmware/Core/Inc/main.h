@@ -61,8 +61,6 @@ void Error_Handler(void);
 #define M3_GPIO_Port GPIOA
 #define M4_Pin GPIO_PIN_5
 #define M4_GPIO_Port GPIOA
-#define MODE_Pin GPIO_PIN_6
-#define MODE_GPIO_Port GPIOA
 #define VOLTS_Pin GPIO_PIN_7
 #define VOLTS_GPIO_Port GPIOA
 #define M1_Pin GPIO_PIN_4

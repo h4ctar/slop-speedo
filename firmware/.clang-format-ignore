@@ -4,8 +4,10 @@ Drivers/**
 Core/Src/*
 Core/Inc/*
 !Core/Src/app.c
+!Core/Src/button.c
 !Core/Src/motor.c
 !Core/Src/screen.c
 !Core/Inc/app.h
+!Core/Inc/button.h
 !Core/Inc/motor.h
 !Core/Inc/screen.h
