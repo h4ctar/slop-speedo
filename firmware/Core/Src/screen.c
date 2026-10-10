@@ -119,14 +119,14 @@ const uint16_t font[] = {
 // clang-format on
 
 // Send a byte to the command register
-void writeCommand(uint8_t byte) {
-  HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x00, 1, &byte, 1,
+HAL_StatusTypeDef writeCommand(uint8_t byte) {
+  return HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x00, 1, &byte, 1,
           HAL_MAX_DELAY);
 }
 
 // Send data
-void writeData(uint8_t *buffer, size_t buff_size) {
-  HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x40, 1, buffer,
+HAL_StatusTypeDef writeData(uint8_t *buffer, size_t buff_size) {
+  return HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x40, 1, buffer,
           buff_size, HAL_MAX_DELAY);
 }
 
@@ -194,7 +194,7 @@ void clearScreen() {
 }
 
 /* Write the screenbuffer with changed to the screen */
-void updateScreen() {
+HAL_StatusTypeDef updateScreen() {
   // Write data to each page of RAM. Number of pages
   // depends on the screen height:
   //
@@ -202,11 +202,14 @@ void updateScreen() {
   //  * 64px   ==  8 pages
   //  * 128px  ==  16 pages
   for (uint8_t i = 0; i < SCREEN_HEIGHT / 8; i++) {
-    writeCommand(0xB0 + i); // Set the current RAM page address.
-    writeCommand(0x00);
-    writeCommand(0x10);
-    writeData(&buffer[SCREEN_WIDTH * i], SCREEN_WIDTH);
+    if (writeCommand(0xB0 + i) != HAL_OK || // Set the current RAM page address.
+            writeCommand(0x00) != HAL_OK ||
+            writeCommand(0x10) != HAL_OK ||
+            writeData(&buffer[SCREEN_WIDTH * i], SCREEN_WIDTH) != HAL_OK) {
+      return HAL_ERROR;
+    }
   }
+  return HAL_OK;
 }
 
 /*

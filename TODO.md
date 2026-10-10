@@ -60,8 +60,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Done when: the displayed volts match a multimeter on the battery within ~0.1 V.
 - [ ] **Odometer & trip functions**: both accumulate distance from the wheel pulses; trip resets on long press; odometer must survive power loss (needs wear-leveled storage in flash — F103C8 has 1 KB pages). The same flash record holds the km/h-m/h unit flag, which applies to the speed, odometer and trip displays (decided by Ben).
       Done when: trip accumulates and resets via long press; odometer accumulates and survives a full power cycle; the unit flag survives too.
-- [ ] **OLED redraw only when the displayed value changes** (per function: clock = minute tick, speed = every few hundred ms, etc.) instead of every loop iteration; this also shrinks loop latency so the motor steps smoothly instead of bursting (see the ticked "needle never moves" item).
+- [x] **OLED redraw only when the displayed value changes** (per function: clock = minute tick, speed = every few hundred ms, etc.) instead of every loop iteration; this also shrinks loop latency so the motor steps smoothly instead of bursting (see the ticked "needle never moves" item).
       Done when: the OLED content is unchanged but the loop period drops, and the display still updates.
+      Fix: `app.c` renders the clock into a string and repaints only when it differs from a static `displayedString` cache (starts empty → first loop paints). Future display functions reuse the same pattern. Reviewer's follow-up built in: `writeCommand`/`writeData`/`updateScreen` now propagate `HAL_StatusTypeDef` and the cache is only updated after a successful flush, so a failed I2C write retries next loop() instead of leaving a stale screen for a minute.
+      Agent-tested 2026-10-10: OLED cache in RAM read back as the live "01:08" clock string; injected a half-scale needle command (480 steps) — step progress uniform at ~84 steps/100 ms (840 steps/s, no bursts) vs the old ~40-step bursts per 50 ms frame, and it stopped exactly on target; commanded back to 0.
+      Done 2026-10-10: Ben confirmed on the board.
 
 ## Hardware tests
 

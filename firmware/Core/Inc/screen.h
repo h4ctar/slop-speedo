@@ -8,9 +8,11 @@
 #ifndef __SCREEN_H__
 #define __SCREEN_H__
 
+#include "stm32f1xx_hal.h"
+
 void initScreen();
 void clearScreen();
-void updateScreen();
+HAL_StatusTypeDef updateScreen();
 void displayString(char *str);
 
 #endif
