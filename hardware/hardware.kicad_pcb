@@ -576,7 +576,7 @@
 		)
 		(path "/aa5f576c-97fc-44fe-ada6-0b5aa247680a")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -1.28 2.55)
@@ -1397,7 +1397,7 @@
 		(property ki_fp_filters "PinHeader*P2.54mm*Vertical* TerminalBlock* Motor*")
 		(path "/9afc2ead-dd57-486e-9869-1179c8359497")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_circle
 			(center 0 -6)
@@ -2061,7 +2061,7 @@
 		)
 		(path "/e8a8f6b8-4c6d-4f72-9736-46f56b93a64f")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_rect
 			(start 0 0)
@@ -2908,7 +2908,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/0180584f-30b2-400f-9d8f-af4c8c46fbf4")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -3306,7 +3306,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/524e61bf-c940-4596-bf95-7ba5f9f6e8f9")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -3704,7 +3704,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/4a578d43-6c3c-4e1b-89b7-aa306b4e6fc4")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -4102,7 +4102,7 @@
 		(property ki_fp_filters "FB_*")
 		(path "/a497dffe-9328-4073-a108-24380749edf0")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0.4 -0.56)
@@ -4561,7 +4561,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/a69a465e-cf60-473a-be89-26267c70710c")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -4735,7 +4735,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/9837ed8d-a99e-4b54-9aec-32f8e667ca72")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start -2.36 0.86)
@@ -5361,7 +5361,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/8bccc720-e738-4e2c-8ad7-2fc2c467295f")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -5798,7 +5798,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/ccef139c-a8de-45e1-b5a0-860fa7d918cd")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -6196,7 +6196,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/2493d5ff-3f58-446f-8430-27ed5b162620")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -6594,7 +6594,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/35db3958-60c7-46f2-84b3-8e0e9f0c3c10")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -7034,7 +7034,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/92e171ad-785e-4608-a0a7-47cc1eb73779")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -7209,7 +7209,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/aab45666-bb42-4921-85b0-23544166b654")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start -2.36 0.86)
@@ -7877,7 +7877,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/f686f84f-4d48-4ce7-8a0e-0e074c9748ef")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -8365,7 +8365,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/bcb51b16-5a62-40ff-ba4d-d74b70295881")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -8749,7 +8749,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/73cdb8a1-e71d-4fca-b17b-b8339d47899e")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -9237,7 +9237,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/67328a7b-2835-4d59-8316-d0972674a741")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -9635,7 +9635,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/5d521f62-0f88-4079-b29e-55d6d155be7d")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -10075,7 +10075,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/6f2ae8fa-3fb4-4c3e-9877-4bbb62246f05")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -10249,7 +10249,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/3f989e2c-76bf-4408-9faa-11ccad1bece5")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start 1.33 1.33)
@@ -10796,7 +10796,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/ec3c1fd4-51e9-4b4d-9274-f5bfc46c116e")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -11326,7 +11326,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/35764a9c-ddce-49bc-a04a-9cab9babcf62")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -11681,7 +11681,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/2bd2f02b-294c-47d8-be67-a350cace2578")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -12211,7 +12211,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/2bb4dbd0-5eed-4ec4-b315-b6a70a9f4c65")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -12580,7 +12580,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/5f52634a-12fc-4fa8-802c-d454e75780c0")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -12964,7 +12964,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/01f124b3-fda4-43d0-b8fd-c74567f88ef7")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -13257,7 +13257,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/8684a0fc-8e15-4f17-8f95-de4e039d79cf")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start 1.33 -1.27)
@@ -13952,7 +13952,7 @@
 		(property ki_fp_filters "LQFP*7x7mm*P0.5mm*")
 		(path "/071cb007-c59b-48db-93c1-b68e382b2d41")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -3.61 3.61)
@@ -15113,7 +15113,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/2edec117-4c78-4486-b8b3-7913adfd5f9a")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -15497,7 +15497,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/ce25a8bc-5517-40c6-9fbe-5d62286011e1")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -16027,7 +16027,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/7483e40b-f78e-43a5-a871-d8097fefe11b")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -16201,7 +16201,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/2c97b3d1-ff34-4106-964b-3b83ec8d83be")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start 1.33 -1.27)
@@ -16722,7 +16722,7 @@
 		)
 		(path "/e586efc5-9374-4bac-a352-ffed7d088d11")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0.6 0.8)
@@ -17143,7 +17143,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/7f7aa9b1-da97-45f1-80f0-c0d4fbb40be8")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -17498,7 +17498,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/5547e3fc-bbae-4199-9e98-852b17d1b75c")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -17918,7 +17918,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/1d27d8b1-3b75-41d3-8bcb-36a84ff1a593")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -18398,7 +18398,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/bb022b4d-e183-4d5b-9c1a-25d850b6c85e")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -18767,7 +18767,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/8b896f1d-56d5-4b7a-abe6-97401bac846f")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -19011,7 +19011,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/bf63cf5b-271c-4ad8-b010-a70e4be940f6")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start -2.36 2.11)
@@ -19498,7 +19498,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/38ebca34-d819-4f6b-9444-c3180251f987")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start -2.36 2.11)
@@ -20288,7 +20288,7 @@
 		)
 		(path "/735e2108-36dd-43c2-8ce9-3b3aa111bdc0")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(zone_connect 2)
 		(attr smd)
 		(fp_line
@@ -20730,7 +20730,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/89f19674-c6d0-484d-94cc-97618f8fa512")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -20943,7 +20943,7 @@
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/57f8bcb0-f37e-4fdc-96af-6ce3f3091c51")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 2.46 2.36)
@@ -21388,7 +21388,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/1f3f33ff-f997-4b63-a507-2408cbb1da22")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -21677,7 +21677,7 @@
 		(property ki_fp_filters "SOT?23*")
 		(path "/4265a8e2-8166-4df7-a5ed-3cf27ff3fe9e")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.8 -1.56)
@@ -22249,7 +22249,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/677cbc3f-a07e-4590-97d3-3c2c9884b9b8")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -22736,7 +22736,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/24e3bf1c-7840-4746-a6a2-b9ae16280f2a")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -23133,7 +23133,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/3f644326-b3fa-4b8f-afe1-d460b675aacc")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -23517,7 +23517,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/2a3cde8b-10bb-4f10-bf10-fc9b0d47084b")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -23991,7 +23991,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/f6b30a28-a526-4000-bc48-66a8e14fb28c")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -24479,7 +24479,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/eebcf733-6405-4c7e-a48e-4b31ad15c9f1")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -24877,7 +24877,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/25cae1b8-ada2-4044-b4fa-a7607af499b4")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -25358,7 +25358,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/b40b1753-f9fe-47a7-81bd-747efc916470")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -25713,7 +25713,7 @@
 		(property ki_fp_filters "D_*")
 		(path "/f68377cc-1787-411c-a36e-4f5a8085dabd")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -26201,7 +26201,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/02e29638-9a80-4cb6-b36e-7875fef00834")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -26599,7 +26599,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/8719a685-432d-4d70-8e69-1c5fc638d486")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line
@@ -27021,7 +27021,7 @@
 		)
 		(path "/510c25e2-a44c-4404-9124-c58aecb04e0f")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -2 -1.7)
@@ -27459,7 +27459,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/f81a4c3d-fe53-4cda-b5d2-f379070a904a")
 		(sheetname "Root")
-		(sheetfile "speedo-pcb.kicad_sch")
+		(sheetfile "hardware.kicad_sch")
 		(solder_mask_margin 0.038)
 		(attr smd)
 		(fp_line

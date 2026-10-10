@@ -2,18 +2,18 @@
   "$schema": "https://opencode.ai/config.json",
   "permissions": [
     // Vendor and CubeMX-generated files: change them via STM32CubeMX, not by hand.
-    { "action": "edit", "resource": "speedo-code/Drivers/*", "effect": "deny" },
-    { "action": "edit", "resource": "speedo-code/cmake/stm32cubemx/*", "effect": "deny" },
-    { "action": "edit", "resource": "speedo-code/speedo-code.ioc", "effect": "deny" },
-    { "action": "edit", "resource": "speedo-code/.mxproject", "effect": "deny" },
+    { "action": "edit", "resource": "firmware/Drivers/*", "effect": "deny" },
+    { "action": "edit", "resource": "firmware/cmake/stm32cubemx/*", "effect": "deny" },
+    { "action": "edit", "resource": "firmware/speedo-code.ioc", "effect": "deny" },
+    { "action": "edit", "resource": "firmware/.mxproject", "effect": "deny" },
 
     // PCB works; revisions need a human decision.
-    { "action": "edit", "resource": "speedo-pcb/*", "effect": "ask" },
+    { "action": "edit", "resource": "hardware/*", "effect": "ask" },
 
     // Flashing and debugging on real hardware is part of the job: no need to ask.
     { "action": "shell", "resource": "openocd *", "effect": "allow" },
     { "action": "shell", "resource": "./flash.sh *", "effect": "allow" },
-    { "action": "shell", "resource": "speedo-code/flash.sh *", "effect": "allow" },
+    { "action": "shell", "resource": "firmware/flash.sh *", "effect": "allow" },
     { "action": "shell", "resource": "arm-none-eabi-gdb *", "effect": "allow" },
 
     // Don't commit until the user has checked the work; every push prompts; no history rewrites.

@@ -17133,7 +17133,7 @@
 			(uuid "195592e2-ba6a-469e-9421-c98940cb5e7d")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR036")
 					(unit 1)
@@ -17516,7 +17516,7 @@
 			(uuid "0957c27d-73f7-4b9c-a9d0-5b5479b109c6")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D6")
 					(unit 1)
@@ -17583,7 +17583,7 @@
 			(uuid "ca53ef9f-73cf-4756-a4ed-757e199d838a")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR010")
 					(unit 1)
@@ -18294,7 +18294,7 @@
 			(uuid "a19b3faa-6290-4e5b-bb9a-be6b46fae7a6")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR016")
 					(unit 1)
@@ -18521,7 +18521,7 @@
 			(uuid "af715c1e-d529-47c9-90a4-677143d60f2a")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR018")
 					(unit 1)
@@ -18709,7 +18709,7 @@
 			(uuid "60f77e12-5c7f-4794-874c-ac13922c3a6f")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D9")
 					(unit 1)
@@ -18776,7 +18776,7 @@
 			(uuid "5cefb2cb-5be1-4f6a-af56-9d29495b8a50")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR029")
 					(unit 1)
@@ -19169,7 +19169,7 @@
 			(uuid "d2b17a18-0298-48ea-b1ef-4a4ff706a4db")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C6")
 					(unit 1)
@@ -19433,7 +19433,7 @@
 			(uuid "9f4a657f-81b8-450a-b6dc-e376c56dcf90")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#FLG03")
 					(unit 1)
@@ -19686,7 +19686,7 @@
 			(uuid "939502f9-3552-4482-bf37-b57427f5a12c")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D2")
 					(unit 1)
@@ -19977,7 +19977,7 @@
 			(uuid "84065c2c-992c-47d1-bdfa-6aa5be6d6d6e")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "R1")
 					(unit 1)
@@ -20164,7 +20164,7 @@
 			(uuid "3d52550c-a620-4b32-ad7c-b716700fe79f")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D7")
 					(unit 1)
@@ -20231,7 +20231,7 @@
 			(uuid "4097af14-d7db-41cb-8a04-b54b19e12547")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR025")
 					(unit 1)
@@ -20628,7 +20628,7 @@
 			(uuid "f2817858-6b90-4c48-8654-8dfe47b8bef8")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR014")
 					(unit 1)
@@ -21046,7 +21046,7 @@
 			(uuid "d1682fee-3a73-4c34-9aa3-fdc272b2da73")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C15")
 					(unit 1)
@@ -21468,7 +21468,7 @@
 			(uuid "4b2e15fc-8588-4db9-9743-318c55aac814")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR012")
 					(unit 1)
@@ -21624,7 +21624,7 @@
 			(uuid "5e72e700-9198-4dd7-9cb2-d86c8de165b2")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR09")
 					(unit 1)
@@ -21759,7 +21759,7 @@
 			(uuid "3a6cfdba-57d6-43be-95c6-26a464b17e81")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR034")
 					(unit 1)
@@ -22022,7 +22022,7 @@
 			(uuid "648942de-cd10-41d7-8e6e-1d29e2b17416")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR035")
 					(unit 1)
@@ -22769,7 +22769,7 @@
 			(uuid "f8a058df-4cba-4aa3-a074-b806a6fc7c43")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#FLG01")
 					(unit 1)
@@ -22966,7 +22966,7 @@
 			(uuid "e0aff967-175e-4fdb-94fe-44fdf31a9ef4")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C7")
 					(unit 1)
@@ -23160,7 +23160,7 @@
 			(uuid "b1ab8533-7fdd-4fcb-a16d-95a6701b257a")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C10")
 					(unit 1)
@@ -23226,7 +23226,7 @@
 			(uuid "bc3bb04e-4dea-4491-9cb6-c93e525e04c4")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR013")
 					(unit 1)
@@ -23293,7 +23293,7 @@
 			(uuid "c4f240fa-a904-4586-b9fa-2d68b7317532")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR37")
 					(unit 1)
@@ -23490,7 +23490,7 @@
 			(uuid "9982bd84-2ba8-489d-b4ce-5e68eb8fae27")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C3")
 					(unit 1)
@@ -23798,7 +23798,7 @@
 			(uuid "134f6f3a-2c8a-440e-a33f-322177c1d216")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR033")
 					(unit 1)
@@ -24088,7 +24088,7 @@
 			(uuid "38e15fb1-8330-4097-b71a-0201411513e7")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR015")
 					(unit 1)
@@ -24799,7 +24799,7 @@
 			(uuid "03e196c8-5998-42d9-96fe-9274133b05ad")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR030")
 					(unit 1)
@@ -24866,7 +24866,7 @@
 			(uuid "a574b147-06a7-491b-baff-77813259af41")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR019")
 					(unit 1)
@@ -25156,7 +25156,7 @@
 			(uuid "635dfed9-065d-4f42-a74d-5c024d4683f4")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#FLG04")
 					(unit 1)
@@ -25978,7 +25978,7 @@
 			(uuid "25c4cf56-2d72-459f-b6d9-d5bbc6aac50e")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D15")
 					(unit 1)
@@ -26044,7 +26044,7 @@
 			(uuid "087a8d7d-2240-4fd6-b85c-10517e6ba5b8")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR011")
 					(unit 1)
@@ -26404,7 +26404,7 @@
 			(uuid "4c9167b6-04ed-4fb6-bd72-16ad81b77b83")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR026")
 					(unit 1)
@@ -26547,7 +26547,7 @@
 			(uuid "bf8d991b-662a-44ae-b056-18faac7baa6a")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR031")
 					(unit 1)
@@ -26614,7 +26614,7 @@
 			(uuid "f9d53453-abf6-4bfd-8299-cc8f44b92582")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#FLG02")
 					(unit 1)
@@ -26874,7 +26874,7 @@
 			(uuid "dc63090a-29c4-42d3-99be-1fec47fabc67")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR032")
 					(unit 1)
@@ -27096,7 +27096,7 @@
 			(uuid "a39cd0bb-d4b5-48ba-bc19-ba32bd2ba924")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "R9")
 					(unit 1)
@@ -27523,7 +27523,7 @@
 			(uuid "a6dd5dfe-a967-4376-b44b-c97bcfcf64ef")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR021")
 					(unit 1)
@@ -27590,7 +27590,7 @@
 			(uuid "18fbb365-18c0-45dd-9439-b894462589e6")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR023")
 					(unit 1)
@@ -27880,7 +27880,7 @@
 			(uuid "db38da1a-4eda-4004-96ba-9565ca4a93c6")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR017")
 					(unit 1)
@@ -28102,7 +28102,7 @@
 			(uuid "2d911ec1-ce5c-4ff2-bf39-00e416100a75")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "R8")
 					(unit 1)
@@ -28170,7 +28170,7 @@
 			(uuid "4f6919d0-6fa6-42b3-bc1a-c0c5f1b73967")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR08")
 					(unit 1)
@@ -28237,7 +28237,7 @@
 			(uuid "346b6d32-ec55-4737-8e1c-9e807fca58ee")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR022")
 					(unit 1)
@@ -28431,7 +28431,7 @@
 			(uuid "54f64121-7bad-4738-a86e-6e56b0f31447")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C14")
 					(unit 1)
@@ -28498,7 +28498,7 @@
 			(uuid "f6794ae1-b178-4d04-b4de-607a0c6520b1")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR027")
 					(unit 1)
@@ -28831,7 +28831,7 @@
 			(uuid "7bf2d0ca-d81d-45bf-9d1f-87e9f6a6c0f9")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "C17")
 					(unit 1)
@@ -28897,7 +28897,7 @@
 			(uuid "c5ccb836-7b3c-4a21-a9d7-dc3417c40c78")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR39")
 					(unit 1)
@@ -29150,7 +29150,7 @@
 			(uuid "0944dc53-2329-4203-b0fc-42355101c735")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR020")
 					(unit 1)
@@ -29217,7 +29217,7 @@
 			(uuid "bdd73d9d-d818-4c8c-91c8-c58906e172e3")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#FLG05")
 					(unit 1)
@@ -29283,7 +29283,7 @@
 			(uuid "d96b40a9-6911-4aeb-be15-8b8d861b4a93")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "#PWR028")
 					(unit 1)
@@ -29893,7 +29893,7 @@
 			(uuid "8a8c28aa-79c2-4662-9b83-02079f5463d5")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D4")
 					(unit 1)
@@ -30277,7 +30277,7 @@
 			(uuid "99e156f4-4272-416d-ab25-18096ab98ca6")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D3")
 					(unit 1)
@@ -30464,7 +30464,7 @@
 			(uuid "a90fb5d5-80f3-477f-9e97-03e57bb7e72e")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D5")
 					(unit 1)
@@ -30651,7 +30651,7 @@
 			(uuid "e05071ee-258d-4cc9-92ef-9a5dcb39b135")
 		)
 		(instances
-			(project "speedo-pcb"
+			(project "hardware"
 				(path "/f54762c2-a8cc-4b58-9422-701295b95b42"
 					(reference "D8")
 					(unit 1)

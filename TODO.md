@@ -35,7 +35,7 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Done when: <!-- Ben: what should MODE do? -->
 - [ ] **Set the clock**: use the MODE button to set hours and minutes on the OLED, replacing the commented-out `HAL_RTC_SetTime` in `setup()`.
       Done when: the time can be set from the button and survives a reset.
-- [ ] **Voltage reading (PA7 / ADC1 ch7)**: read and scale it to volts using the PCB divider (values from `speedo-pcb` schematic).
+- [ ] **Voltage reading (PA7 / ADC1 ch7)**: read and scale it to volts using the PCB divider (values from `hardware` schematic).
       Done when: <!-- Ben: show on OLED? needle? low-battery warning? -->
 - [ ] Stop redrawing the OLED on every loop iteration; only redraw when the minute changes.
 

@@ -1,13 +1,13 @@
 # AGENTS.md
 
-Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `speedo-code/`, KiCad 8 PCB in `speedo-pcb/`. No README, tests, or linters.
+Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, KiCad 8 PCB in `hardware/`. No README, tests, or linters.
 
-## Firmware (`speedo-code/`)
+## Firmware (`firmware/`)
 
-- Build (run from `speedo-code/`): `cmake --preset Debug && cmake --build --preset Debug` (or `Release`). Output: `build/<preset>/speedo-code.elf`.
+- Build (run from `firmware/`): `cmake --preset Debug && cmake --build --preset Debug` (or `Release`). Output: `build/<preset>/speedo-code.elf`.
 - Needs `arm-none-eabi-gcc`, `arm-none-eabi-newlib` (for `nano.specs`) and `ninja` (Arch: `pacman -S arm-none-eabi-gcc arm-none-eabi-newlib ninja`).
-- Verify every change with `speedo-code/check.sh`. It runs a strict (`-Werror`) Debug and Release build in `build/check-*`, the same as CI (`.github/workflows/firmware.yml`, which runs on pushes touching `speedo-code/`). Any warning fails CI.
-- Flash with `speedo-code/flash.sh [Debug|Release]` (OpenOCD + ST-Link). Flashing and on-hardware debugging are allowed without asking: do them whenever a change needs testing or verifying on the board.
+- Verify every change with `firmware/check.sh`. It runs a strict (`-Werror`) Debug and Release build in `build/check-*`, the same as CI (`.github/workflows/firmware.yml`, which runs on pushes touching `firmware/`). Any warning fails CI.
+- Flash with `firmware/flash.sh [Debug|Release]` (OpenOCD + ST-Link). Flashing and on-hardware debugging are allowed without asking: do them whenever a change needs testing or verifying on the board.
 - Inspect a running board without halting it (halting can interrupt I2C transfers): `openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c 'init; echo [read_memory <addr> 32 <n>]; shutdown'`, getting addresses from `arm-none-eabi-nm build/Debug/speedo-code.elf`. `mdw` output doesn't show up in `-c` mode. Arch's `arm-none-eabi-gdb` prints Python errors unless run with `-nx`.
 - Flashing resets the MCU mid-I2C-transfer and can lock up the OLED bus (SDA held low). The user must power-cycle the board until bus recovery is implemented (see `TODO.md`).
 - An agent can't see the board. A task is done only after the user confirms a hardware test. Work items are listed in `TODO.md`.
@@ -19,15 +19,15 @@ Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `speedo-code/`,
 - Hand-written code lives in `app.c` (`setup()`/`loop()`), `motor.c` (X27.168 stepper gauge driven by direct GPIO steps, timed with TIM1) and `screen.c` (SSD1306 128x32 OLED over I2C1 at 0x3C). `main.c` calls `setup()` in `USER CODE 2` and `loop()` in `USER CODE 3`.
 - Code placed between `USER CODE END WHILE` and `USER CODE BEGIN 3` is outside any protected block and gets deleted on regeneration. A `loop()` call was lost this way before.
 - Don't glob `Core/Src/*.c` in CMake: the generated file already lists CubeMX's sources, and duplicates break the link.
-- CMake uses `STM32F103xx_FLASH.ld` and `startup_stm32f103xb.s` in the `speedo-code/` root. `STM32F103C8TX_FLASH.ld`, `Core/Startup/`, `.cproject`, `.project` and `*.launch` are left over from STM32CubeIDE and aren't used by the CMake build.
+- CMake uses `STM32F103xx_FLASH.ld` and `startup_stm32f103xb.s` in the `firmware/` root. `STM32F103C8TX_FLASH.ld`, `Core/Startup/`, `.cproject`, `.project` and `*.launch` are left over from STM32CubeIDE and aren't used by the CMake build.
 - `Drivers/` is vendor HAL/CMSIS code; don't edit it.
-- `speedo-code/.clang-format` sets the hand-written style (2-space indent, no tabs, braces on the same line). `.clang-format-ignore` excludes all of `Core/` except an allowlist of hand-written files. Add new hand-written files to its `!` list, and never format CubeMX or `Drivers/` files. Inside `USER CODE` blocks in CubeMX files, match CubeMX's style by hand: 2 spaces, braces on their own line, and keep the CRLF line endings. Keep big data tables inside `// clang-format off/on`.
-- LSP: `speedo-code/.clangd` points clangd at `build/Debug/compile_commands.json`. Re-run `cmake --preset Debug` after adding source files.
+- `firmware/.clang-format` sets the hand-written style (2-space indent, no tabs, braces on the same line). `.clang-format-ignore` excludes all of `Core/` except an allowlist of hand-written files. Add new hand-written files to its `!` list, and never format CubeMX or `Drivers/` files. Inside `USER CODE` blocks in CubeMX files, match CubeMX's style by hand: 2 spaces, braces on their own line, and keep the CRLF line endings. Keep big data tables inside `// clang-format off/on`.
+- LSP: `firmware/.clangd` points clangd at `build/Debug/compile_commands.json`. Re-run `cmake --preset Debug` after adding source files.
 
-## PCB (`speedo-pcb/`)
+## PCB (`hardware/`)
 
 - Revision 1 is built and appears to work. Edits ask for approval; record problems found during testing under "PCB revision notes" in `TODO.md` rather than changing the board on your own initiative.
 - Review PCB and kibot-config changes with the `hardware-reviewer` subagent before committing; it verifies text/attribute edits stay electrically inert and that warning filters don't hide real issues.
-- CI (`.github/workflows/kibot.yml`) runs `kibot` in `speedo-pcb/` on every push, using the `ghcr.io/inti-cmnb/kicad8_auto_full` container. The config is `config.kibot.yaml`. ERC and DRC run as preflight checks, and only the library-issue errors are filtered out, so other ERC/DRC errors fail CI.
-- Outputs go to `speedo-pcb/generated/` and `speedo-pcb/JLCPCB/`, which are CI artifacts, so don't commit them.
-- Custom symbols, footprints and 3D models are in `speedo-pcb/lib/`, referenced via the project-local `sym-lib-table` / `fp-lib-table`.
+- CI (`.github/workflows/kibot.yml`) runs `kibot` in `hardware/` on every push, using the `ghcr.io/inti-cmnb/kicad8_auto_full` container. The config is `config.kibot.yaml`. ERC and DRC run as preflight checks, and only the library-issue errors are filtered out, so other ERC/DRC errors fail CI.
+- Outputs go to `hardware/generated/` and `hardware/JLCPCB/`, which are CI artifacts, so don't commit them.
+- Custom symbols, footprints and 3D models are in `hardware/lib/`, referenced via the project-local `sym-lib-table` / `fp-lib-table`.

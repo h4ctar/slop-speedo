@@ -20,14 +20,29 @@ permissions:
   - action: shell
     resource: "git show *"
     effect: allow
+  - action: shell
+    resource: "grep *"
+    effect: allow
+  - action: shell
+    resource: "head *"
+    effect: allow
+  - action: shell
+    resource: "tail *"
+    effect: allow
+  - action: shell
+    resource: "wc *"
+    effect: allow
+  - action: shell
+    resource: "sed -n *"
+    effect: allow
 ---
 
-Review the uncommitted changes in this STM32F103 firmware repo (`git diff` and `git status`; also read new untracked files). Report findings in severity order with file:line references. Report only real problems, not style preferences. If there are none, say so.
+Review the uncommitted changes in this STM32F103 firmware repo (`git diff` and `git status`; also read new untracked files). Shell is allow-listed: only bare `git diff`/`git status`/`git log`/`git show` work — no pipes, no `git -C`, anything else is denied — so use the read/grep/glob tools for file inspection. Report findings in severity order with file:line references. Report only real problems, not style preferences. If there are none, say so.
 
 Check specifically:
 
 1. **CubeMX regeneration safety**: in CubeMX-generated files (`Core/Src/main.c`, `gpio.c`, `tim.c`, `adc.c`, `i2c.c`, `rtc.c`, `stm32f1xx_it.c`, `stm32f1xx_hal_msp.c`, and their headers), every change must be inside a `/* USER CODE BEGIN x */` … `/* USER CODE END x */` block. Anything else is deleted the next time CubeMX regenerates. The gap between `USER CODE END WHILE` and `USER CODE BEGIN 3` is not protected.
-2. **Build wiring**: new `.c` files must be listed in the top-level `speedo-code/CMakeLists.txt` `target_sources`, not in `cmake/stm32cubemx/CMakeLists.txt`.
+2. **Build wiring**: new `.c` files must be listed in the top-level `firmware/CMakeLists.txt` `target_sources`, not in `cmake/stm32cubemx/CMakeLists.txt`.
 3. **Interrupt safety**: variables shared between ISRs/HAL callbacks and the main loop must be `volatile`. Multi-byte shared state needs to be read atomically. No blocking calls (`HAL_Delay`, `waitForMotor`, I2C transfers) inside ISRs.
 4. **Main loop responsiveness**: `loop()` runs continuously and the stepper is driven from it. Flag anything that blocks long enough to stall the needle or the display.
 5. **Arithmetic**: overflow and truncation in step counts, `HAL_GetTick()`/timer wraparound (use unsigned subtraction), and float use. The Cortex-M3 has no FPU, so floats are slow and pull in soft-float code.

@@ -3,7 +3,7 @@ name: Firmware
 on:
     push:
         paths:
-            - "speedo-code/**"
+            - "firmware/**"
             - ".github/workflows/firmware.yml"
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
 
         defaults:
             run:
-                working-directory: speedo-code
+                working-directory: firmware
 
         steps:
             - uses: actions/checkout@v7
@@ -35,6 +35,6 @@ jobs:
               with:
                   name: firmware-${{ matrix.preset }}
                   path: |
-                      speedo-code/build/${{ matrix.preset }}/speedo-code.elf
-                      speedo-code/build/${{ matrix.preset }}/speedo-code.bin
-                      speedo-code/build/${{ matrix.preset }}/speedo-code.map
+                      firmware/build/${{ matrix.preset }}/speedo-code.elf
+                      firmware/build/${{ matrix.preset }}/speedo-code.bin
+                      firmware/build/${{ matrix.preset }}/speedo-code.map
