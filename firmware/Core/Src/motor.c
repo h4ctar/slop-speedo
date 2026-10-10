@@ -49,13 +49,24 @@ void updateMotor() {
   // 16-bit math on purpose: TIM1's counter wraps every 65.5 ms, and unsigned
   // subtraction mod 2^16 gives the true elapsed ticks across any wrap.
   // Comparing in 32 bits made each wrap fire a step early.
-  uint16_t currentTime = (uint16_t)__HAL_TIM_GET_COUNTER(&htim1);
-  if ((uint16_t)(currentTime - lastStepTime) >= STEP_PERIOD) {
+  //
+  // loop() can be busy for tens of ms (the OLED redraw blocks on I2C), so
+  // catch up on every step that is due, not just one. Gaps over 65.5 ms
+  // under-measure and merely defer steps, never fire early.
+  for (;;) {
+    uint16_t currentTime = (uint16_t)__HAL_TIM_GET_COUNTER(&htim1);
+    if ((uint16_t)(currentTime - lastStepTime) < STEP_PERIOD) {
+      return;
+    }
     int16_t delta = targetSteps - currentSteps;
+    if (delta == 0) {
+      lastStepTime = currentTime; // idle: anchor the schedule for the next command
+      return;
+    }
     int8_t direction = (delta > 0) - (delta < 0);
     currentSteps += direction;
     stepMotor();
-    lastStepTime = currentTime;
+    lastStepTime += STEP_PERIOD;
   }
 }
 

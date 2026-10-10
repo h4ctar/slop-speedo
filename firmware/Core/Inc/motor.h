@@ -4,6 +4,7 @@
 void initMotor();
 void setMotorTargetPosition(float position);
 float getMotorCurrentPosition();
+void updateMotor();
 void waitForMotor();
 void stepMotor();
 

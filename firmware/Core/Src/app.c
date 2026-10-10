@@ -17,6 +17,8 @@ void setup() {
 }
 
 void loop() {
+  updateMotor();
+
   RTC_TimeTypeDef sTime;
   HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 

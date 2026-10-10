@@ -36,8 +36,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Fix: `setMotorTargetPosition` clamps the float input to [0, MAX_POSITION] before converting — low clamp is `!(position >= 0)`, which also routes NaN (fails every comparison) to 0; dropped the dead unsigned checks, kept the >MAX_STEPS guard as belt-and-braces. Firmware-reviewer: correct, and flagged the NaN case which is now closed; the only remaining callers (initMotor literals) are unaffected.
       Agent-tested 2026-10-10: gdb `call setMotorTargetPosition` on the halted board: -5 → 0, 100 → 960, NaN → 0, 0 → 0.
       Done 2026-10-10: Ben confirmed on the board (boot sweep unchanged).
-- [ ] **The needle never moves after homing.** Nothing calls `updateMotor()` from `loop()`, and `updateMotor` isn't declared in `motor.h`.
+- [x] **The needle never moves after homing.** Nothing calls `updateMotor()` from `loop()`, and `updateMotor` isn't declared in `motor.h`.
       Done when: `loop()` services the motor, and setting a target position moves the needle without blocking the display.
+      Fix: `updateMotor()` declared in `motor.h` and called first thing in `loop()`; `updateMotor()` is now a catch-up loop (re-reads the 16-bit counter, steps every due step, anchors `lastStepTime` when idle, `lastStepTime += STEP_PERIOD` scheduling) so the needle moves at full rate even though `loop()` blocks ~50 ms per OLED redraw — reviewer confirmed termination, exact step counts across wraps/stalls, and flagged that big slews fire ~40-step bursts per frame until the OLED-redraw TODO lands (small moves are 1-2 steps/frame, invisible).
+      Agent-tested 2026-10-10: commanded full-scale up/down by injecting `targetSteps` (mww) on the running board: 0→960 in ~1.5 s (391→708→960), 960→0 (590→272→0), exact to the step, no stalls. Debug-session forensics (frozen core at 901/Reset_Handler) traced to leftover FPB breakpoints + vector catch from gdb `call` — remedies documented in `AGENTS.md`.
+      Done 2026-10-10: Ben confirmed on the board.
 
 ## Features (DRAFT: written by the agent from pins/code; Ben to edit)
 
