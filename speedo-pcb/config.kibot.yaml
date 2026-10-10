@@ -6,6 +6,10 @@ import:
 
 globals:
     dir: generated
+    filters:
+        - number: 135
+          regex: 'Part field mismatch'
+          filter: 'SCH Part field holds descriptions, PCB Part field holds MPNs; KiBot adopts the PCB value'
 
 preflight:
     check_zone_fills: true

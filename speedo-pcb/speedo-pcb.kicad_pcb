@@ -872,7 +872,7 @@
 		(at 77 123)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H4"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -935,7 +935,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
@@ -1103,7 +1103,7 @@
 		(at 77 77)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H1"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1166,7 +1166,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
@@ -1536,7 +1536,7 @@
 		(at 117 100)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H6"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1599,7 +1599,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
@@ -1767,7 +1767,7 @@
 		(at 123 77)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H2"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1830,7 +1830,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
@@ -2181,7 +2181,7 @@
 		(at 83 100)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H5"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -2244,7 +2244,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
@@ -2412,7 +2412,7 @@
 		(at 123 123)
 		(descr "Mounting Hole 2.2mm, M2")
 		(tags "mounting hole 2.2mm m2")
-		(property "Reference" "REF**"
+		(property "Reference" "H3"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -2475,7 +2475,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.2 0)
