@@ -10,15 +10,16 @@
     // PCB works; revisions need a human decision.
     { "action": "edit", "resource": "speedo-pcb/*", "effect": "ask" },
 
-    // Touching real hardware.
-    { "action": "shell", "resource": "openocd *", "effect": "ask" },
-    { "action": "shell", "resource": "./flash.sh *", "effect": "ask" },
-    { "action": "shell", "resource": "speedo-code/flash.sh *", "effect": "ask" },
-    { "action": "shell", "resource": "arm-none-eabi-gdb *", "effect": "ask" },
+    // Flashing and debugging on real hardware is part of the job: no need to ask.
+    { "action": "shell", "resource": "openocd *", "effect": "allow" },
+    { "action": "shell", "resource": "./flash.sh *", "effect": "allow" },
+    { "action": "shell", "resource": "speedo-code/flash.sh *", "effect": "allow" },
+    { "action": "shell", "resource": "arm-none-eabi-gdb *", "effect": "allow" },
 
-    // Commit locally, never push or rewrite history.
+    // Don't commit until the user has checked the work; never push or rewrite history.
+    { "action": "shell", "resource": "git commit *", "effect": "ask" },
+    { "action": "shell", "resource": "git commit --amend *", "effect": "ask" },
     { "action": "shell", "resource": "git push *", "effect": "deny" },
     { "action": "shell", "resource": "git reset --hard *", "effect": "ask" },
-    { "action": "shell", "resource": "git commit --amend *", "effect": "ask" },
   ],
 }
