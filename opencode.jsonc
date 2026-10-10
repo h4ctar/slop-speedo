@@ -16,10 +16,10 @@
     { "action": "shell", "resource": "speedo-code/flash.sh *", "effect": "allow" },
     { "action": "shell", "resource": "arm-none-eabi-gdb *", "effect": "allow" },
 
-    // Don't commit until the user has checked the work; never push or rewrite history.
+    // Don't commit until the user has checked the work; every push prompts; no history rewrites.
     { "action": "shell", "resource": "git commit *", "effect": "ask" },
     { "action": "shell", "resource": "git commit --amend *", "effect": "ask" },
-    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
     { "action": "shell", "resource": "git reset --hard *", "effect": "ask" },
   ],
 }
