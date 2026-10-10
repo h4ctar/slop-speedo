@@ -42,16 +42,26 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Agent-tested 2026-10-10: commanded full-scale up/down by injecting `targetSteps` (mww) on the running board: 0→960 in ~1.5 s (391→708→960), 960→0 (590→272→0), exact to the step, no stalls. Debug-session forensics (frozen core at 901/Reset_Handler) traced to leftover FPB breakpoints + vector catch from gdb `call` — remedies documented in `AGENTS.md`.
       Done 2026-10-10: Ben confirmed on the board.
 
-## Features (DRAFT: written by the agent from pins/code; Ben to edit)
+## Features (decided by Ben 2026-10-10: needle = speed from the stock speedo drive; screen cycles functions via the MODE button)
 
-- [ ] Decide what the needle shows (speed? volts? time?) and its input source. <!-- Ben: fill in -->
-- [ ] **MODE button (PA6)**: read with debouncing, short and long press.
-      Done when: <!-- Ben: what should MODE do? -->
-- [ ] **Set the clock**: use the MODE button to set hours and minutes on the OLED, replacing the commented-out `HAL_RTC_SetTime` in `setup()`.
+- [x] Decide what the needle shows (speed? volts? time?) and its input source.
+      Decided: the needle shows the speed, from a speed sensor driven by the stock speedo drive on the front wheel (see the speed-sensor item below).
+- [ ] **Speed sensor from the stock speedo drive (front wheel)**: pick a sensor for the rotating drive (reed switch, hall sensor with magnet, or optical slot sensor — decision needed), wire it to a free GPIO, and calibrate pulses → km/h (pulses per cable revolution × cable revs per distance). Needs a CubeMX change for the input (EXTI or timer input capture — exact pin/pertype to be decided with the sensor). Sensor may be an off-board module first or a PCB decision (record under "PCB revision notes").
+      Done when: spinning the front wheel by hand produces pulse counts on the board that map to a plausible speed.
+- [ ] **MODE button (PA6)**: read with debouncing; short press cycles the display functions, long press triggers the current function's secondary action.
+      Done when: short presses cycle functions on the OLED, long presses trigger the current function's long-press action, with no double-fires or bounces.
+- [ ] **UI function switcher**: short press cycles Speed → Clock → Voltage → Odometer → Trip → Speed…; the needle always displays the speed no matter which function is on the OLED (decided by Ben).
+      Done when: each function renders on the OLED and the cycle order wraps back to Speed, with the needle tracking the speed throughout.
+- [ ] **Speed function**: display the speed in km/h on the OLED, needle shows the speed; long press switches to m/h (and back on the next long press). The km/h-m/h choice persists across power cycles (decided by Ben) — store it in flash alongside the odometer (BKP registers need the still-unfitted battery).
+      Done when: the speed displays and tracks the wheel while riding; long press swaps units and the choice survives a full power cycle.
+- [ ] **Clock function**: display HH:MM on the OLED; long press enters set mode — the button then sets hours, then minutes (replaces the commented-out `HAL_RTC_SetTime` in `setup()`); exit set mode with a long press (or a timeout).
       Done when: the time can be set from the button and survives a reset.
-- [ ] **Voltage reading (PA7 / ADC1 ch7)**: read and scale it to volts using the PCB divider (values from `hardware` schematic).
-      Done when: <!-- Ben: show on OLED? needle? low-battery warning? -->
-- [ ] Stop redrawing the OLED on every loop iteration; only redraw when the minute changes.
+- [ ] **Voltage function (PA7 / ADC1 ch7)**: read and scale to volts using the PCB divider (values from the `hardware` schematic); display on the OLED in the voltage function (e.g. "12.4V"). The needle is not part of this function — it always shows speed (decided by Ben); no low-battery warning.
+      Done when: the displayed volts match a multimeter on the battery within ~0.1 V.
+- [ ] **Odometer & trip functions**: both accumulate distance from the wheel pulses; trip resets on long press; odometer must survive power loss (needs wear-leveled storage in flash — F103C8 has 1 KB pages). The same flash record holds the km/h-m/h unit flag, which applies to the speed, odometer and trip displays (decided by Ben).
+      Done when: trip accumulates and resets via long press; odometer accumulates and survives a full power cycle; the unit flag survives too.
+- [ ] **OLED redraw only when the displayed value changes** (per function: clock = minute tick, speed = every few hundred ms, etc.) instead of every loop iteration; this also shrinks loop latency so the motor steps smoothly instead of bursting (see the ticked "needle never moves" item).
+      Done when: the OLED content is unchanged but the loop period drops, and the display still updates.
 
 ## Hardware tests
 
