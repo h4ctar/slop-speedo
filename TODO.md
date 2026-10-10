@@ -26,8 +26,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Agent-tested 2026-10-10: after first boot writes the flag (BKP_DR1 read 0x5254 via openocd), two consecutive `/flash` resets preserved the counter — read via gdb `call HAL_RTC_GetTime` into `buffer` on the halted target: 00:02:20 → (flash reset) → 00:03:49, +89 s over ~90 s wall time. Note: RTC registers (RTC_CNTH/CNTL, BDCR) read garbage via openocd SWD even halted; BKP_DR1 reads fine; use the HAL read path (gdb call, or the OLED itself) for time. RTC runs on LSI (40 kHz ±30%), so the displayed time drifts badly — X2 (32.768 kHz) is fitted but LSE is not enabled (see VBAT answer below). Battery/power-loss persistence deferred to its own item under "Hardware tests" (no CR1220 on hand; a 3.7 V Li-ion is out of spec for VBAT).
       Done 2026-10-10: Ben confirmed on the board.
 
-- [ ] **Motor timing wraps wrongly.** TIM1's counter is 16-bit, but `motor.c` compares it to a `uint32_t lastStepTime`. Each time the counter wraps, the difference is huge, so the motor takes an early step.
+- [x] **Motor timing wraps wrongly.** TIM1's counter is 16-bit, but `motor.c` compares it to a `uint32_t lastStepTime`. Each time the counter wraps, the difference is huge, so the motor takes an early step.
       Done when: step timing uses 16-bit unsigned subtraction, and the needle sweeps smoothly without jitter.
+      Fix: `lastStepTime` is now `uint16_t` and `updateMotor()` compares `(uint16_t)(currentTime - lastStepTime) >= STEP_PERIOD` — unsigned modular subtraction, exact across every 65.5 ms wrap. Firmware-reviewer: no issues (modular math well-defined, conversions safe, works on both Arch and CI gcc).
+      Agent-tested 2026-10-10: clean boot (no debugger halting — gdb `detach` leaves the core halted with this openocd, which is what the earlier "stuck at 901/960" readings were): homing sweep progresses 946/960 → 556 descending → 0 at 1.2 ms/step as designed, ~2.3 s total, no hang.
+      Done 2026-10-10: Ben watched the replayed boot sweep — smooth, uniform 1.2 ms/step.
 - [ ] **Negative positions aren't clamped.** In `setMotorTargetPosition`, `targetSteps < 0` is always false (`targetSteps` is unsigned), and converting a negative float to `uint16_t` is undefined behaviour.
       Done when: the input is clamped as a float before conversion.
 - [ ] **The needle never moves after homing.** Nothing calls `updateMotor()` from `loop()`, and `updateMotor` isn't declared in `motor.h`.

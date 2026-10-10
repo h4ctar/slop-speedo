@@ -13,7 +13,7 @@
 #define STEPS_PER_POSITION 60.
 #define MAX_STEPS          (STEPS_PER_POSITION * MAX_POSITION)
 
-uint32_t lastStepTime = 10000;
+uint16_t lastStepTime = 10000;
 uint16_t currentSteps = 0;
 uint16_t targetSteps = 0;
 
@@ -40,8 +40,11 @@ float getMotorCurrentPosition() {
 }
 
 void updateMotor() {
-  uint32_t currentTime = __HAL_TIM_GET_COUNTER(&htim1);
-  if (currentTime - lastStepTime >= STEP_PERIOD) {
+  // 16-bit math on purpose: TIM1's counter wraps every 65.5 ms, and unsigned
+  // subtraction mod 2^16 gives the true elapsed ticks across any wrap.
+  // Comparing in 32 bits made each wrap fire a step early.
+  uint16_t currentTime = (uint16_t)__HAL_TIM_GET_COUNTER(&htim1);
+  if ((uint16_t)(currentTime - lastStepTime) >= STEP_PERIOD) {
     int16_t delta = targetSteps - currentSteps;
     int8_t direction = (delta > 0) - (delta < 0);
     currentSteps += direction;
