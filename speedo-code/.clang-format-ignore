@@ -1,0 +1,11 @@
+# Vendor and STM32CubeMX-generated code: never reformat (regeneration would undo it
+# and the diffs bury real changes). Only hand-written files are formatted.
+Drivers/**
+Core/Src/*
+Core/Inc/*
+!Core/Src/app.c
+!Core/Src/motor.c
+!Core/Src/screen.c
+!Core/Inc/app.h
+!Core/Inc/motor.h
+!Core/Inc/screen.h

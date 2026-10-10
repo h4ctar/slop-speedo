@@ -11,6 +11,6 @@
 void initScreen();
 void clearScreen();
 void updateScreen();
-void displayString(char* str);
+void displayString(char *str);
 
 #endif

@@ -8,18 +8,18 @@ jobs:
         container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - run: |
                   cd speedo-pcb
                   kibot
 
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               with:
                   name: generated
                   path: speedo-pcb/generated
 
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               with:
                   name: jlcpcb
                   path: speedo-pcb/JLCPCB

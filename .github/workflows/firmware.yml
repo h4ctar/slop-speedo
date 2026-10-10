@@ -1,0 +1,40 @@
+name: Firmware
+
+on:
+    push:
+        paths:
+            - "speedo-code/**"
+            - ".github/workflows/firmware.yml"
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                preset: [Debug, Release]
+
+        defaults:
+            run:
+                working-directory: speedo-code
+
+        steps:
+            - uses: actions/checkout@v7
+
+            - run: |
+                  sudo apt-get update
+                  sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi ninja-build
+
+            - run: cmake --preset ${{ matrix.preset }} -DCMAKE_C_FLAGS=-Werror
+
+            - run: cmake --build --preset ${{ matrix.preset }}
+
+            - run: arm-none-eabi-objcopy -O binary build/${{ matrix.preset }}/speedo-code.elf build/${{ matrix.preset }}/speedo-code.bin
+
+            - uses: actions/upload-artifact@v7
+              with:
+                  name: firmware-${{ matrix.preset }}
+                  path: |
+                      speedo-code/build/${{ matrix.preset }}/speedo-code.elf
+                      speedo-code/build/${{ matrix.preset }}/speedo-code.bin
+                      speedo-code/build/${{ matrix.preset }}/speedo-code.map

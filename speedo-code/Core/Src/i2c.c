@@ -63,6 +63,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle)
   if(i2cHandle->Instance==I2C1)
   {
   /* USER CODE BEGIN I2C1_MspInit 0 */
+    I2C1_RecoverBus();
 
   /* USER CODE END I2C1_MspInit 0 */
 
@@ -110,6 +111,57 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 }
 
 /* USER CODE BEGIN 1 */
+static void busDelay(void)
+{
+  /* A few microseconds: slower than a 100 kHz half-period at any SYSCLK. */
+  for (volatile uint32_t i = 0; i < SystemCoreClock / 1000000U; i++)
+  {
+  }
+}
+
+/* Free a bus held low by a slave that was mid-transfer when the MCU reset
+ * (e.g. after flashing): clock SCL until the slave releases SDA, then send a
+ * STOP. Runs from HAL_I2C_MspInit, before PB6/PB7 are switched to I2C mode. */
+void I2C1_RecoverBus(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6 | GPIO_PIN_7, GPIO_PIN_SET);
+  GPIO_InitStruct.Pin = GPIO_PIN_6 | GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  busDelay();
+
+  /* The STOP's first SCL edge can clock out a pending ACK, leaving SDA low
+   * again, so check after each STOP and retry. */
+  for (int attempt = 0; attempt < 3; attempt++)
+  {
+    for (int i = 0; i < 9 && HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) == GPIO_PIN_RESET; i++)
+    {
+      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+      busDelay();
+      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
+      busDelay();
+    }
+
+    /* STOP: SDA rises while SCL is high. */
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+    busDelay();
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
+    busDelay();
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
+    busDelay();
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
+    busDelay();
+
+    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) == GPIO_PIN_SET)
+    {
+      break;
+    }
+  }
+}
 
 /* USER CODE END 1 */
 
