@@ -21,6 +21,12 @@
 #include "rtc.h"
 
 /* USER CODE BEGIN 0 */
+/* BKP_DR1 magic: non-zero once the RTC time has been set at least once. The
+ * register lives in the Vbat domain: any reset that keeps the board powered
+ * (flash, debugger, NRST, watchdog, brownout) preserves both the flag and the
+ * counter, so MX_RTC_Init skips re-setting the time. Removing all power clears
+ * both, and the next boot starts the clock at the default time again. */
+#define RTC_TIME_SET_MAGIC 0x5254U /* "RT" */
 
 /* USER CODE END 0 */
 
@@ -52,7 +58,12 @@ void MX_RTC_Init(void)
   }
 
   /* USER CODE BEGIN Check_RTC_BKUP */
-
+  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == RTC_TIME_SET_MAGIC)
+  {
+    /* Time and flag live in the Vbat domain and survived the last reset:
+     * don't clobber the clock, keep the counter running. */
+    return;
+  }
   /* USER CODE END Check_RTC_BKUP */
 
   /** Initialize RTC and set the Time and Date
@@ -75,7 +86,9 @@ void MX_RTC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN RTC_Init 2 */
-
+  /* First boot (or all power lost): the default time was just set - remember
+   * it so the next reset doesn't zero the clock again. */
+  HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, RTC_TIME_SET_MAGIC);
   /* USER CODE END RTC_Init 2 */
 
 }

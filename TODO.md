@@ -20,8 +20,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Done when: the OLED keeps working after repeated `/flash` and debugger halts without a power cycle.
       Agent-tested 2026-10-10 on the running board (reading `hi2c1.ErrorCode` at 0x200000f4 / `.State` at 0x200000f1 via openocd, no halting): 3 consecutive `./flash.sh` resets mid-transfer, 1 `reset halt`+resume, and 1 plain halt+resume, then 4 samples over 8 s — `ErrorCode` 0 and `State` 0x21 (BUSY_TX) after every reset, no power cycle.
       Done 2026-10-10: Ben confirmed the display works and updates after flashing, no power cycle.
-- [ ] **RTC time resets on every boot.** The RTC counter matched uptime (33 s after flashing), so the time is lost on reset even with the CR1220 backup battery. Probably `MX_RTC_Init` sets the time unconditionally. Use a backup-register "time set" flag in a USER CODE block of `rtc.c` to skip setting it.
+- [x] **RTC time resets on every boot.** The RTC counter matched uptime (33 s after flashing), so the time is lost on reset even with the CR1220 backup battery. Probably `MX_RTC_Init` sets the time unconditionally. Use a backup-register "time set" flag in a USER CODE block of `rtc.c` to skip setting it.
       Done when: the time set before a reset is still correct after the reset (with the battery fitted).
+      Fix: in `rtc.c`, BKP_DR1 flag `RTC_TIME_SET_MAGIC` 0x5254 — `Check_RTC_BKUP` block returns early (skipping the generated SetTime/SetDate) when the flag is set; `RTC_Init 2` block writes the flag after SetTime/SetDate succeed. Removing all power (no Vbat fitted) clears the flag, so the clock then restarts at 00:00 — by design.
+      Agent-tested 2026-10-10: after first boot writes the flag (BKP_DR1 read 0x5254 via openocd), two consecutive `/flash` resets preserved the counter — read via gdb `call HAL_RTC_GetTime` into `buffer` on the halted target: 00:02:20 → (flash reset) → 00:03:49, +89 s over ~90 s wall time. Note: RTC registers (RTC_CNTH/CNTL, BDCR) read garbage via openocd SWD even halted; BKP_DR1 reads fine; use the HAL read path (gdb call, or the OLED itself) for time. RTC runs on LSI (40 kHz ±30%), so the displayed time drifts badly — X2 (32.768 kHz) is fitted but LSE is not enabled (see VBAT answer below). Battery/power-loss persistence deferred to its own item under "Hardware tests" (no CR1220 on hand; a 3.7 V Li-ion is out of spec for VBAT).
+      Done 2026-10-10: Ben confirmed on the board.
 
 - [ ] **Motor timing wraps wrongly.** TIM1's counter is 16-bit, but `motor.c` compares it to a `uint32_t lastStepTime`. Each time the counter wraps, the difference is huge, so the motor takes an early step.
       Done when: step timing uses 16-bit unsigned subtraction, and the needle sweeps smoothly without jitter.
@@ -40,6 +43,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
 - [ ] **Voltage reading (PA7 / ADC1 ch7)**: read and scale it to volts using the PCB divider (values from `hardware` schematic).
       Done when: <!-- Ben: show on OLED? needle? low-battery warning? -->
 - [ ] Stop redrawing the OLED on every loop iteration; only redraw when the minute changes.
+
+## Hardware tests
+
+- [ ] **Test the Vbat battery keeps the clock across full power loss.** Needs a CR1220 in a holder wired to J5 (JST PH 2-pin: pin 1 = VBAT = +, pin 2 = GND). The board has no series diode or charger, so check the holder's polarity with a meter before plugging in, and do NOT use a 3.7 V Li-ion directly — VBAT is rated 1.8-3.6 V and a full Li-ion is 4.2 V. If the Li-ion must be used, put a 1N4148/1N4007 in series with its + wire (drops 4.2 V to ~3.55 V, in spec).
+      Done when: with the battery fitted, the time read via gdb `call HAL_RTC_GetTime` carries forward over a full power-off (USB unplugged for a minute or two) instead of restarting at 00:00, and restarting at 00:00 happens with the battery removed.
 
 ## PCB revision notes
 
