@@ -31,8 +31,11 @@ Work through with `/next` (first unchecked item) or `/next <item>`. Every item n
       Fix: `lastStepTime` is now `uint16_t` and `updateMotor()` compares `(uint16_t)(currentTime - lastStepTime) >= STEP_PERIOD` — unsigned modular subtraction, exact across every 65.5 ms wrap. Firmware-reviewer: no issues (modular math well-defined, conversions safe, works on both Arch and CI gcc).
       Agent-tested 2026-10-10: clean boot (no debugger halting — gdb `detach` leaves the core halted with this openocd, which is what the earlier "stuck at 901/960" readings were): homing sweep progresses 946/960 → 556 descending → 0 at 1.2 ms/step as designed, ~2.3 s total, no hang.
       Done 2026-10-10: Ben watched the replayed boot sweep — smooth, uniform 1.2 ms/step.
-- [ ] **Negative positions aren't clamped.** In `setMotorTargetPosition`, `targetSteps < 0` is always false (`targetSteps` is unsigned), and converting a negative float to `uint16_t` is undefined behaviour.
+- [x] **Negative positions aren't clamped.** In `setMotorTargetPosition`, `targetSteps < 0` is always false (`targetSteps` is unsigned), and converting a negative float to `uint16_t` is undefined behaviour.
       Done when: the input is clamped as a float before conversion.
+      Fix: `setMotorTargetPosition` clamps the float input to [0, MAX_POSITION] before converting — low clamp is `!(position >= 0)`, which also routes NaN (fails every comparison) to 0; dropped the dead unsigned checks, kept the >MAX_STEPS guard as belt-and-braces. Firmware-reviewer: correct, and flagged the NaN case which is now closed; the only remaining callers (initMotor literals) are unaffected.
+      Agent-tested 2026-10-10: gdb `call setMotorTargetPosition` on the halted board: -5 → 0, 100 → 960, NaN → 0, 0 → 0.
+      Done 2026-10-10: Ben confirmed on the board (boot sweep unchanged).
 - [ ] **The needle never moves after homing.** Nothing calls `updateMotor()` from `loop()`, and `updateMotor` isn't declared in `motor.h`.
       Done when: `loop()` services the motor, and setting a target position moves the needle without blocking the display.
 

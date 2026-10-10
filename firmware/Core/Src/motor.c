@@ -26,12 +26,18 @@ void initMotor() {
 }
 
 void setMotorTargetPosition(float position) {
-  targetSteps = position * STEPS_PER_POSITION;
+  // Clamp the float before converting: a negative float to uint16_t is
+  // undefined behaviour, and the old unsigned checks could never catch it.
+  // !(position >= 0) also catches NaN, which fails every comparison.
+  if (!(position >= 0)) {
+    position = 0;
+  }
+  if (position > MAX_POSITION) {
+    position = MAX_POSITION;
+  }
+  targetSteps = (uint16_t)(position * STEPS_PER_POSITION);
   if (targetSteps > MAX_STEPS) {
     targetSteps = MAX_STEPS;
-  }
-  if (targetSteps < 0) {
-    targetSteps = 0;
   }
 }
 
