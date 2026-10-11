@@ -6,6 +6,6 @@
 // The ODOMETER display function: total distance, in the shared unit.
 // Accumulation from the wheel pulses and flash persistence land with the
 // speed-sensor TODO.
-extern const Function odoFunction;
+extern const Function odo_function;
 
 #endif

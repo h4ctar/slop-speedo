@@ -30,7 +30,7 @@ static bool trip_update(ButtonEvent event) {
   return event == BUTTON_SHORT;
 }
 
-const Function tripFunction = {
+const Function trip_function = {
     .init = trip_init,
     .update = trip_update,
     .name = "TRIP",

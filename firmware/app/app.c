@@ -18,11 +18,11 @@
 // and rendering (see function.h). Everything that must run in every function
 // (motor servicing, speed/needle) is called before the function update.
 static const Function *const functions[] = {
-    &speedFunction,
-    &clockFunction,
-    &voltFunction,
-    &odoFunction,
-    &tripFunction,
+    &speed_function,
+    &clock_function,
+    &volt_function,
+    &odo_function,
+    &trip_function,
 };
 #define FUNCTION_COUNT (sizeof(functions) / sizeof(functions[0]))
 static uint8_t function_index = 0;

@@ -61,8 +61,8 @@ typedef struct {
 } Function;
 ```
 
-- `app.c` holds the registry (`speedFunction`, `clockFunction`, `voltFunction`,
-  `odoFunction`, `tripFunction`) and the current index. That is all it knows.
+- `app.c` holds the registry (`speed_function`, `clock_function`, `volt_function`,
+  `odo_function`, `trip_function`) and the current index. That is all it knows.
 - `update(event)` does the function's logic and rendering and returns **true**
   when the event was an unconsumed short press — the signal to cycle to the
   next function. Functions that use short presses for themselves (clock set

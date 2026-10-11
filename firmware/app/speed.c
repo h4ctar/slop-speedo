@@ -26,7 +26,7 @@ static bool speed_update(ButtonEvent event) {
   return event == BUTTON_SHORT;
 }
 
-const Function speedFunction = {
+const Function speed_function = {
     .init = speed_init,
     .update = speed_update,
     .name = "SPEED",

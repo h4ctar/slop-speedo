@@ -119,13 +119,13 @@ const uint16_t font[] = {
 // clang-format on
 
 // Send a byte to the command register
-HAL_StatusTypeDef writeCommand(uint8_t byte) {
+static HAL_StatusTypeDef screen_write_command(uint8_t byte) {
   return HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x00, 1, &byte, 1,
           HAL_MAX_DELAY);
 }
 
 // Send data
-HAL_StatusTypeDef writeData(uint8_t *buffer, size_t buff_size) {
+static HAL_StatusTypeDef screen_write_data(uint8_t *buffer, size_t buff_size) {
   return HAL_I2C_Mem_Write(&I2C_PORT, I2C_ADDR, 0x40, 1, buffer,
           buff_size, HAL_MAX_DELAY);
 }
@@ -155,50 +155,50 @@ void screen_init() {
   HAL_Delay(100);
 
   // Init OLED
-  writeCommand(0xAE); //--turn off SSD1306 panel
+  screen_write_command(0xAE); //--turn off SSD1306 panel
 
-  writeCommand(0x20); //Set Memory Addressing Mode
-  writeCommand(0x00); // 00b,Horizontal Addressing Mode; 01b,Vertical Addressing Mode;
+  screen_write_command(0x20); //Set Memory Addressing Mode
+  screen_write_command(0x00); // 00b,Horizontal Addressing Mode; 01b,Vertical Addressing Mode;
   // 10b,Page Addressing Mode (RESET); 11b,Invalid
 
-  writeCommand(0xB0); //Set Page Start Address for Page Addressing Mode,0-7
+  screen_write_command(0xB0); //Set Page Start Address for Page Addressing Mode,0-7
 
-  writeCommand(0xC8); //Set COM Output Scan Direction
+  screen_write_command(0xC8); //Set COM Output Scan Direction
 
-  writeCommand(0x00); //---set low column address
-  writeCommand(0x10); //---set high column address
+  screen_write_command(0x00); //---set low column address
+  screen_write_command(0x10); //---set high column address
 
-  writeCommand(0x40); //--set start line address - CHECK
+  screen_write_command(0x40); //--set start line address - CHECK
 
-  writeCommand(0xA1); //--set segment re-map 0 to 127 - CHECK
+  screen_write_command(0xA1); //--set segment re-map 0 to 127 - CHECK
 
-  writeCommand(0xA6); //--set normal color
+  screen_write_command(0xA6); //--set normal color
 
-  writeCommand(0xA8); //--set multiplex ratio(1 to 64) - CHECK
+  screen_write_command(0xA8); //--set multiplex ratio(1 to 64) - CHECK
 
-  writeCommand(0x1F); //
+  screen_write_command(0x1F); //
 
-  writeCommand(0xA4); //0xa4,Output follows RAM content;0xa5,Output ignores RAM content
+  screen_write_command(0xA4); //0xa4,Output follows RAM content;0xa5,Output ignores RAM content
 
-  writeCommand(0xD3); //-set display offset - CHECK
-  writeCommand(0x00); //-not offset
+  screen_write_command(0xD3); //-set display offset - CHECK
+  screen_write_command(0x00); //-not offset
 
-  writeCommand(0xD5); //--set display clock divide ratio/oscillator frequency
-  writeCommand(0xF0); //--set divide ratio
+  screen_write_command(0xD5); //--set display clock divide ratio/oscillator frequency
+  screen_write_command(0xF0); //--set divide ratio
 
-  writeCommand(0xD9); //--set pre-charge period
-  writeCommand(0x22); //
+  screen_write_command(0xD9); //--set pre-charge period
+  screen_write_command(0x22); //
 
-  writeCommand(0xDA); //--set com pins hardware configuration - CHECK
-  writeCommand(0x02);
+  screen_write_command(0xDA); //--set com pins hardware configuration - CHECK
+  screen_write_command(0x02);
 
-  writeCommand(0xDB); //--set vcomh
-  writeCommand(0x20); //0x20,0.77xVcc
+  screen_write_command(0xDB); //--set vcomh
+  screen_write_command(0x20); //0x20,0.77xVcc
 
-  writeCommand(0x8D); //--set DC-DC enable
-  writeCommand(0x14); //
+  screen_write_command(0x8D); //--set DC-DC enable
+  screen_write_command(0x14); //
 
-  writeCommand(0xAF); //--turn on SSD1306 panel
+  screen_write_command(0xAF); //--turn on SSD1306 panel
 
   // Clear screen
   screen_clear();
@@ -221,10 +221,10 @@ HAL_StatusTypeDef screen_update() {
   //  * 64px   ==  8 pages
   //  * 128px  ==  16 pages
   for (uint8_t i = 0; i < SCREEN_HEIGHT / 8; i++) {
-    if (writeCommand(0xB0 + i) != HAL_OK || // Set the current RAM page address.
-            writeCommand(0x00) != HAL_OK ||
-            writeCommand(0x10) != HAL_OK ||
-            writeData(&frame_buffer[SCREEN_WIDTH * i], SCREEN_WIDTH) != HAL_OK) {
+    if (screen_write_command(0xB0 + i) != HAL_OK || // Set the current RAM page address.
+            screen_write_command(0x00) != HAL_OK ||
+            screen_write_command(0x10) != HAL_OK ||
+            screen_write_data(&frame_buffer[SCREEN_WIDTH * i], SCREEN_WIDTH) != HAL_OK) {
       return HAL_ERROR;
     }
   }

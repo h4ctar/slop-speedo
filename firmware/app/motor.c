@@ -54,13 +54,13 @@ void motor_update() {
   // catch up on every step that is due, not just one. Gaps over 65.5 ms
   // under-measure and merely defer steps, never fire early.
   for (;;) {
-    uint16_t currentTime = (uint16_t)__HAL_TIM_GET_COUNTER(&htim1);
-    if ((uint16_t)(currentTime - last_step_time_ticks) < STEP_PERIOD_TICKS) {
+    uint16_t now_ticks = (uint16_t)__HAL_TIM_GET_COUNTER(&htim1);
+    if ((uint16_t)(now_ticks - last_step_time_ticks) < STEP_PERIOD_TICKS) {
       return;
     }
     int16_t delta = target_steps - current_steps;
     if (delta == 0) {
-      last_step_time_ticks = currentTime; // idle: anchor the schedule for the next command
+      last_step_time_ticks = now_ticks; // idle: anchor the schedule for the next command
       return;
     }
     int8_t direction = (delta > 0) - (delta < 0);

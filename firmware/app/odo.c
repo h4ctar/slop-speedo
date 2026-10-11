@@ -23,7 +23,7 @@ static bool odo_update(ButtonEvent event) {
   return event == BUTTON_SHORT; // odometer has no button actions
 }
 
-const Function odoFunction = {
+const Function odo_function = {
     .init = odo_init,
     .update = odo_update,
     .name = "ODO",

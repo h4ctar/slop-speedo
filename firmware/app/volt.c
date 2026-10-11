@@ -35,17 +35,17 @@ uint16_t volt_read_battery_mv() {
   return (uint16_t)battery_mv;
 }
 
-static bool updateVolt(ButtonEvent event) {
+static bool volt_update(ButtonEvent event) {
   uint16_t battery_mv = volt_read_battery_mv();
-  uint16_t km_tenths = (battery_mv + 50) / 100;
+  uint16_t volt_tenths = (battery_mv + 50) / 100;
   char volt_string[8];
-  snprintf(volt_string, sizeof(volt_string), "%u.%uV", km_tenths / 10, km_tenths % 10);
+  snprintf(volt_string, sizeof(volt_string), "%u.%uV", volt_tenths / 10, volt_tenths % 10);
   screen_show_string(volt_string);
   return event == BUTTON_SHORT; // no long-press action for voltage
 }
 
-const Function voltFunction = {
+const Function volt_function = {
     .init = volt_init,
-    .update = updateVolt,
+    .update = volt_update,
     .name = "VOLT",
 };

@@ -65,7 +65,7 @@ static bool clock_update(ButtonEvent event) {
   return false;
 }
 
-const Function clockFunction = {
+const Function clock_function = {
     .init = clock_init,
     .update = clock_update,
     .name = "CLOCK",
