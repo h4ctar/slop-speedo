@@ -1,7 +1,7 @@
 #ifndef __APP_H__
 #define __APP_H__
 
-void setup();
-void loop();
+void app_setup();
+void app_loop();
 
 #endif

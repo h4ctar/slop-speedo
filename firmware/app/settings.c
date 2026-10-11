@@ -6,11 +6,11 @@ void settings_init() {
   // TODO: load the saved unit (and later the odometer) from the flash record.
 }
 
-SpeedUnit settings_getUnit() {
+SpeedUnit settings_get_unit() {
   return unit;
 }
 
-void settings_toggleUnit() {
+void settings_toggle_unit() {
   unit = (unit == UNIT_KMH) ? UNIT_MPH : UNIT_KMH;
   // TODO: save to the flash record.
 }

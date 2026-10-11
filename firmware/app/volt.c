@@ -12,11 +12,11 @@
 #define MV_PER_COUNT_X1000 4579U
 #define OVERSAMPLE 16
 
-void initVolt() {
+void volt_init() {
   HAL_ADCEx_Calibration_Start(&hadc1);
 }
 
-uint16_t readBatteryMillivolts() {
+uint16_t volt_read_battery_mv() {
   uint32_t sum = 0;
   uint32_t samples = 0;
 
@@ -31,21 +31,21 @@ uint16_t readBatteryMillivolts() {
   if (samples == 0) {
     return 0;
   }
-  uint32_t millivolts = sum * MV_PER_COUNT_X1000 / (samples * 1000U);
-  return (uint16_t)millivolts;
+  uint32_t battery_mv = sum * MV_PER_COUNT_X1000 / (samples * 1000U);
+  return (uint16_t)battery_mv;
 }
 
 static bool updateVolt(ButtonEvent event) {
-  uint16_t millivolts = readBatteryMillivolts();
-  uint16_t tenths = (millivolts + 50) / 100;
-  char voltString[8];
-  snprintf(voltString, sizeof(voltString), "%u.%uV", tenths / 10, tenths % 10);
-  showString(voltString);
+  uint16_t battery_mv = volt_read_battery_mv();
+  uint16_t km_tenths = (battery_mv + 50) / 100;
+  char volt_string[8];
+  snprintf(volt_string, sizeof(volt_string), "%u.%uV", km_tenths / 10, km_tenths % 10);
+  screen_show_string(volt_string);
   return event == BUTTON_SHORT; // no long-press action for voltage
 }
 
 const Function voltFunction = {
-    .init = initVolt,
+    .init = volt_init,
     .update = updateVolt,
     .name = "VOLT",
 };

@@ -10,7 +10,7 @@
 //
 //  - init: called once at boot, after the peripherals are up.
 //  - update: called every loop() with the button event. Handles the logic and
-//    renders the screen (via showString). Returns true when the event was NOT
+//    renders the screen (via screen_show_string). Returns true when the event was NOT
 //    consumed and should cycle to the next function (i.e. a short press the
 //    function doesn't use for itself, like set mode does).
 //  - name: shown for a second when the function is first cycled to.

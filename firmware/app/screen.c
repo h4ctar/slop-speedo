@@ -13,10 +13,10 @@
 #define SCREEN_HEIGHT 32
 #define BUFFER_SIZE   (SCREEN_WIDTH * SCREEN_HEIGHT / 8)
 
-static uint8_t buffer[BUFFER_SIZE];
+static uint8_t frame_buffer[BUFFER_SIZE];
 
-uint32_t x = 0;
-uint32_t y = SCREEN_HEIGHT - FONT_HEIGHT;
+static uint32_t cursor_x = 0;
+static uint32_t cursor_y = SCREEN_HEIGHT - FONT_HEIGHT;
 
 // clang-format off
 const uint16_t font[] = {
@@ -130,27 +130,27 @@ HAL_StatusTypeDef writeData(uint8_t *buffer, size_t buff_size) {
           buff_size, HAL_MAX_DELAY);
 }
 
-/* What is currently on the screen: showString only flushes when the string
+/* What is currently on the screen: screen_show_string only flushes when the string
  * changes, which keeps callers cheap to call every loop pass and stops
  * constant I2C traffic. Starts empty so the first call paints. Strings must
  * stay <= 7 chars + NUL: the OLED is 8 characters wide at the current font. */
-static char onScreen[8];
+static char on_screen[8];
 
 /* Draw a string into the buffer and flush it, but only when it differs from
  * what is already on the screen. The cache updates only after a successful
  * flush, so a failed I2C write retries on the next call. */
-void showString(const char *str) {
-  if (strcmp(str, onScreen) != 0) {
-    clearScreen();
-    displayString((char *)str);
-    if (updateScreen() == HAL_OK) {
-      strcpy(onScreen, str);
+void screen_show_string(const char *str) {
+  if (strcmp(str, on_screen) != 0) {
+    screen_clear();
+    screen_draw_string((char *)str);
+    if (screen_update() == HAL_OK) {
+      strcpy(on_screen, str);
     }
   }
 }
 
 /* Initialize the oled screen */
-void initScreen() {
+void screen_init() {
   // Wait for the screen to boot
   HAL_Delay(100);
 
@@ -201,19 +201,19 @@ void initScreen() {
   writeCommand(0xAF); //--turn on SSD1306 panel
 
   // Clear screen
-  clearScreen();
+  screen_clear();
 
   // Flush buffer to screen
-  updateScreen();
+  screen_update();
 }
 
 /* Fill the whole screen with the given color */
-void clearScreen() {
-  memset(buffer, 0x00, sizeof(buffer));
+void screen_clear() {
+  memset(frame_buffer, 0x00, sizeof(frame_buffer));
 }
 
 /* Write the screenbuffer with changed to the screen */
-HAL_StatusTypeDef updateScreen() {
+HAL_StatusTypeDef screen_update() {
   // Write data to each page of RAM. Number of pages
   // depends on the screen height:
   //
@@ -224,7 +224,7 @@ HAL_StatusTypeDef updateScreen() {
     if (writeCommand(0xB0 + i) != HAL_OK || // Set the current RAM page address.
             writeCommand(0x00) != HAL_OK ||
             writeCommand(0x10) != HAL_OK ||
-            writeData(&buffer[SCREEN_WIDTH * i], SCREEN_WIDTH) != HAL_OK) {
+            writeData(&frame_buffer[SCREEN_WIDTH * i], SCREEN_WIDTH) != HAL_OK) {
       return HAL_ERROR;
     }
   }
@@ -237,13 +237,13 @@ HAL_StatusTypeDef updateScreen() {
  * Y => Y Coordinate
  * color => Pixel color
  */
-void drawPixel(uint8_t x, uint8_t y) {
+void screen_draw_pixel(uint8_t x, uint8_t y) {
   if (x >= SCREEN_WIDTH || y >= SCREEN_HEIGHT) {
     // Don't write outside the buffer
     return;
   }
 
-  buffer[x + (y / 8) * SCREEN_WIDTH] |= 1 << (y % 8);
+  frame_buffer[x + (y / 8) * SCREEN_WIDTH] |= 1 << (y % 8);
 }
 
 /*
@@ -251,7 +251,7 @@ void drawPixel(uint8_t x, uint8_t y) {
  * ch       => char om weg te schrijven
  * color    => Black or White
  */
-void drawCharacter(char ch) {
+void screen_draw_char(char ch) {
   uint32_t i, b, j;
 
   // Check if character is valid
@@ -259,7 +259,7 @@ void drawCharacter(char ch) {
     return;
 
   // Check remaining space on current line
-  if (SCREEN_WIDTH < (x + FONT_WIDTH) || SCREEN_HEIGHT < (y + FONT_HEIGHT)) {
+  if (SCREEN_WIDTH < (cursor_x + FONT_WIDTH) || SCREEN_HEIGHT < (cursor_y + FONT_HEIGHT)) {
     // Not enough space on current line
     return;
   }
@@ -269,21 +269,21 @@ void drawCharacter(char ch) {
     b = font[(ch - 32) * FONT_HEIGHT + i];
     for (j = 0; j < FONT_WIDTH; j++) {
       if ((b << j) & 0x8000) {
-        drawPixel(x + j, (y + i));
+        screen_draw_pixel(cursor_x + j, (cursor_y + i));
       }
     }
   }
 
   // The current space is now taken
-  x += FONT_WIDTH;
+  cursor_x += FONT_WIDTH;
 }
 
 /* Write full string to screenbuffer */
-void displayString(char *str) {
-  x = 0;
+void screen_draw_string(char *str) {
+  cursor_x = 0;
 
   while (*str) {
-    drawCharacter(*str);
+    screen_draw_char(*str);
     str++;
   }
 }

@@ -5,7 +5,7 @@
 #define DEBOUNCE_MS 25
 #define LONG_PRESS_MS 800
 
-// Time-based state machine, driven by pollButton() on every loop() pass. The
+// Time-based state machine, driven by button_poll() on every loop() pass. The
 // loop usually spins fast, but it can stall for tens of ms (OLED flush) — all
 // decisions use HAL_GetTick() deltas, so a stall can delay but never corrupt
 // an event.
@@ -16,13 +16,13 @@
 //               moment the hold crosses LONG_PRESS_MS.
 //   RELEASE     saw the pin high, waiting out the debounce window before
 //               settling back to IDLE (and firing the short, if no long).
-void initButton() {
+void button_init() {
 }
 
-ButtonEvent pollButton() {
+ButtonEvent button_poll() {
   static enum { IDLE, DOWN, HELD, HELD_LONG, RELEASE } state = IDLE;
-  static uint32_t stateSince = 0;
-  static bool longFired = false;
+  static uint32_t state_since_ms = 0;
+  static bool long_fired = false;
 
   // MODE button on PA6: external switch to GND, internal pull-up (CubeMX).
   bool pressed = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) == GPIO_PIN_RESET;
@@ -32,48 +32,48 @@ ButtonEvent pollButton() {
   case IDLE:
     if (pressed) {
       state = DOWN;
-      stateSince = now;
-      longFired = false;
+      state_since_ms = now;
+      long_fired = false;
     }
     break;
   case DOWN:
     if (!pressed) {
       state = IDLE;
-    } else if (now - stateSince >= DEBOUNCE_MS) {
+    } else if (now - state_since_ms >= DEBOUNCE_MS) {
       state = HELD;
     }
     break;
   case HELD:
-    if (now - stateSince >= LONG_PRESS_MS) {
-      longFired = true;
+    if (now - state_since_ms >= LONG_PRESS_MS) {
+      long_fired = true;
       state = HELD_LONG; // long fires without waiting for release
       return BUTTON_LONG;
     }
     if (!pressed) {
       state = RELEASE;
-      stateSince = now;
+      state_since_ms = now;
     }
     break;
   case HELD_LONG:
     if (!pressed) {
       state = RELEASE;
-      stateSince = now;
+      state_since_ms = now;
     }
     break;
   case RELEASE:
     if (pressed) {
-      if (longFired) {
+      if (long_fired) {
         // The long press was already delivered; this bounce (or quick re-press)
         // starts a fresh press.
         state = DOWN;
-        stateSince = now;
-        longFired = false;
+        state_since_ms = now;
+        long_fired = false;
       } else {
         state = HELD; // bounce mid-press: keep the original press timing
       }
-    } else if (now - stateSince >= DEBOUNCE_MS) {
+    } else if (now - state_since_ms >= DEBOUNCE_MS) {
       state = IDLE;
-      if (!longFired) {
+      if (!long_fired) {
         return BUTTON_SHORT;
       }
     }

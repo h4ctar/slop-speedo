@@ -9,7 +9,7 @@
 // and shows it as "x.yV". The needle is not part of this function.
 extern const Function voltFunction;
 
-// Battery voltage in millivolts (16× oversampled).
-uint16_t readBatteryMillivolts();
+// Battery voltage in battery_mv (16× oversampled).
+uint16_t volt_read_battery_mv();
 
 #endif

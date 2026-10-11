@@ -9,7 +9,7 @@ typedef enum {
 // User settings shared by the speed, odometer and trip functions. Values live
 // in RAM for now; persistence in flash lands with the odometer storage TODO.
 void settings_init();
-SpeedUnit settings_getUnit();
-void settings_toggleUnit();
+SpeedUnit settings_get_unit();
+void settings_toggle_unit();
 
 #endif

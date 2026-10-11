@@ -10,10 +10,10 @@
 
 #include "stm32f1xx_hal.h"
 
-void initScreen();
-void clearScreen();
-HAL_StatusTypeDef updateScreen();
-void displayString(char *str);
-void showString(const char *str);
+void screen_init();
+void screen_clear();
+HAL_StatusTypeDef screen_update();
+void screen_draw_string(char *str);
+void screen_show_string(const char *str);
 
 #endif

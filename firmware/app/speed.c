@@ -7,27 +7,27 @@
 // speed (pulse rate x 3600 / pulses-per-km), and drive the needle there.
 // Skeleton until the sensor lands: with no pulses the speed is 0 and the
 // needle stays parked at 0.
-void speedTask() {
+void speed_task() {
 }
 
-static void renderSpeed() {
-  // TODO: render the measured speed once the sensor feeds speedTask.
-  showString(settings_getUnit() == UNIT_KMH ? "0 km/h" : "0 mi/h");
+static void speed_render() {
+  // TODO: render the measured speed once the sensor feeds speed_task.
+  screen_show_string(settings_get_unit() == UNIT_KMH ? "0 km/h" : "0 mi/h");
 }
 
-static void initSpeed() {
+static void speed_init() {
 }
 
-static bool updateSpeed(ButtonEvent event) {
+static bool speed_update(ButtonEvent event) {
   if (event == BUTTON_LONG) {
-    settings_toggleUnit(); // km/h <-> mi/h
+    settings_toggle_unit(); // km/h <-> mi/h
   }
-  renderSpeed();
+  speed_render();
   return event == BUTTON_SHORT;
 }
 
 const Function speedFunction = {
-    .init = initSpeed,
-    .update = updateSpeed,
+    .init = speed_init,
+    .update = speed_update,
     .name = "SPEED",
 };
