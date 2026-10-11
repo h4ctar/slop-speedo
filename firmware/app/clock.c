@@ -61,7 +61,7 @@ static bool clock_update(ButtonEvent event) {
   } else {
     snprintf(str, sizeof(str), "%02d:%02d", s_time.Hours, s_time.Minutes);
   }
-  screen_show_string(str);
+  screen_show_value(str, NULL);
   return false;
 }
 

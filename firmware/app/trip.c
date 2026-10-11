@@ -16,17 +16,20 @@ static bool trip_update(ButtonEvent event) {
   }
   // Dummy distance until the wheel pulses and flash storage land.
   uint32_t distance_m = 123400; // 123.4 km
-  char s[8];
+  char value[8];
+  const char *unit;
   if (settings_get_unit() == UNIT_KMH) {
     uint32_t km_tenths = (distance_m + 50) / 100;
-    snprintf(s, sizeof(s), "%lu.%lukm", (unsigned long)(km_tenths / 10),
+    snprintf(value, sizeof(value), "%lu.%lu", (unsigned long)(km_tenths / 10),
              (unsigned long)(km_tenths % 10));
+    unit = "km";
   } else {
     uint32_t mi_tenths = (uint32_t)((uint64_t)distance_m * 621371ULL / 100000000ULL);
-    snprintf(s, sizeof(s), "%lu.%lumi", (unsigned long)(mi_tenths / 10),
+    snprintf(value, sizeof(value), "%lu.%lu", (unsigned long)(mi_tenths / 10),
              (unsigned long)(mi_tenths % 10));
+    unit = "mi";
   }
-  screen_show_string(s);
+  screen_show_value(value, unit);
   return event == BUTTON_SHORT;
 }
 

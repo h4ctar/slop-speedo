@@ -13,7 +13,6 @@
 void screen_init();
 void screen_clear();
 HAL_StatusTypeDef screen_update();
-void screen_draw_string(char *str);
-void screen_show_string(const char *str);
+void screen_show_value(const char *value, const char *unit);
 
 #endif

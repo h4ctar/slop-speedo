@@ -38,9 +38,9 @@ uint16_t volt_read_battery_mv() {
 static bool volt_update(ButtonEvent event) {
   uint16_t battery_mv = volt_read_battery_mv();
   uint16_t volt_tenths = (battery_mv + 50) / 100;
-  char volt_string[8];
-  snprintf(volt_string, sizeof(volt_string), "%u.%uV", volt_tenths / 10, volt_tenths % 10);
-  screen_show_string(volt_string);
+  char value[8];
+  snprintf(value, sizeof(value), "%u.%u", volt_tenths / 10, volt_tenths % 10);
+  screen_show_value(value, "V");
   return event == BUTTON_SHORT; // no long-press action for voltage
 }
 

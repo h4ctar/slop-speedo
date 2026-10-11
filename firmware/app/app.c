@@ -57,7 +57,7 @@ void app_loop() {
       name_flash_until_ms = HAL_GetTick(); // expire the flash; the long goes through
       functions[function_index]->update(event);
     } else {
-      screen_show_string(functions[function_index]->name);
+      screen_show_value(functions[function_index]->name, NULL);
     }
     return;
   }

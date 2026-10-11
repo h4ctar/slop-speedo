@@ -13,13 +13,16 @@ static void odo_init() {
 static bool odo_update(ButtonEvent event) {
   // Dummy distance until the wheel pulses and flash storage land.
   uint32_t distance_m = 12345678; // ~12345.7 km
-  char s[8];
+  char value[8];
+  const char *unit;
   if (settings_get_unit() == UNIT_KMH) {
-    snprintf(s, sizeof(s), "%lukm", (unsigned long)(distance_m / 1000));
+    snprintf(value, sizeof(value), "%lu", (unsigned long)(distance_m / 1000));
+    unit = "km";
   } else {
-    snprintf(s, sizeof(s), "%lumi", (unsigned long)(distance_m / 1609));
+    snprintf(value, sizeof(value), "%lu", (unsigned long)(distance_m / 1609));
+    unit = "mi";
   }
-  screen_show_string(s);
+  screen_show_value(value, unit);
   return event == BUTTON_SHORT; // odometer has no button actions
 }
 

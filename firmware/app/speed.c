@@ -12,7 +12,7 @@ void speed_task() {
 
 static void speed_render() {
   // TODO: render the measured speed once the sensor feeds speed_task.
-  screen_show_string(settings_get_unit() == UNIT_KMH ? "0 km/h" : "0 mi/h");
+  screen_show_value("0", settings_get_unit() == UNIT_KMH ? "km/h" : "mi/h");
 }
 
 static void speed_init() {
