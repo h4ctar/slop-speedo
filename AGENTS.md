@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, KiCad 8 PCB in `hardware/`. No README, tests, or linters. Software architecture: `firmware/DESIGN.md`; code style: `firmware/CODE_STYLE.md`.
+Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, KiCad 8 PCB in `hardware/`, 3D-printed parts in `mechanical/` (FreeCAD, by Ben; `firmware/DESIGN.md` architecture, `firmware/CODE_STYLE.md` style). No tests, no linters.
 
 ## Firmware (`firmware/`)
 
