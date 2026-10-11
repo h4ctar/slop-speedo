@@ -4,6 +4,7 @@
 #include "motor.h"
 #include "tim.h"
 #include "rtc.h"
+#include "voltage.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -46,6 +47,7 @@ void setup() {
   HAL_TIM_Base_Start(&htim1);
   initButton();
   initMotor();
+  initVoltage();
   initScreen();
 }
 
@@ -108,6 +110,13 @@ void loop() {
     showString("LONG");
   } else if (functionIndex == FUNCTION_CLOCK) {
     showString(timeString);
+  } else if (functionIndex == FUNCTION_VOLT) {
+    // x.y V, rounded to one decimal; integer math keeps nano-printf float-free.
+    uint16_t millivolts = readBatteryMillivolts();
+    uint16_t tenths = (millivolts + 50) / 100;
+    char voltString[8];
+    snprintf(voltString, sizeof(voltString), "%u.%uV", tenths / 10, tenths % 10);
+    showString(voltString);
   } else {
     showString(functionNames[functionIndex]);
   }
