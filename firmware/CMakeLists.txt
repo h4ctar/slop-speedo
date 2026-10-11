@@ -47,7 +47,12 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     app/app.c
     app/button.c
-    app/voltage.c
+    app/settings.c
+    app/speed.c
+    app/clock.c
+    app/volt.c
+    app/odo.c
+    app/trip.c
     app/motor.c
     app/screen.c
 )

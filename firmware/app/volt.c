@@ -1,5 +1,9 @@
-#include "voltage.h"
+#include "volt.h"
+
+#include <stdio.h>
+
 #include "adc.h"
+#include "screen.h"
 
 // Divider: 22k from +12V, 4.7k to GND -> V_pin = V_batt * 4.7/26.7. With a
 // 3.3V reference and 12-bit counts:
@@ -8,7 +12,7 @@
 #define MV_PER_COUNT_X1000 4579U
 #define OVERSAMPLE 16
 
-void initVoltage() {
+void initVolt() {
   HAL_ADCEx_Calibration_Start(&hadc1);
 }
 
@@ -30,3 +34,18 @@ uint16_t readBatteryMillivolts() {
   uint32_t millivolts = sum * MV_PER_COUNT_X1000 / (samples * 1000U);
   return (uint16_t)millivolts;
 }
+
+static bool updateVolt(ButtonEvent event) {
+  uint16_t millivolts = readBatteryMillivolts();
+  uint16_t tenths = (millivolts + 50) / 100;
+  char voltString[8];
+  snprintf(voltString, sizeof(voltString), "%u.%uV", tenths / 10, tenths % 10);
+  showString(voltString);
+  return event == BUTTON_SHORT; // no long-press action for voltage
+}
+
+const Function voltFunction = {
+    .init = initVolt,
+    .update = updateVolt,
+    .name = "VOLT",
+};

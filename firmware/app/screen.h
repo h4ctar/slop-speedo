@@ -14,5 +14,6 @@ void initScreen();
 void clearScreen();
 HAL_StatusTypeDef updateScreen();
 void displayString(char *str);
+void showString(const char *str);
 
 #endif

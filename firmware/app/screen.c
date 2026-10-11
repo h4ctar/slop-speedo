@@ -130,6 +130,25 @@ HAL_StatusTypeDef writeData(uint8_t *buffer, size_t buff_size) {
           buff_size, HAL_MAX_DELAY);
 }
 
+/* What is currently on the screen: showString only flushes when the string
+ * changes, which keeps callers cheap to call every loop pass and stops
+ * constant I2C traffic. Starts empty so the first call paints. Strings must
+ * stay <= 7 chars + NUL: the OLED is 8 characters wide at the current font. */
+static char onScreen[8];
+
+/* Draw a string into the buffer and flush it, but only when it differs from
+ * what is already on the screen. The cache updates only after a successful
+ * flush, so a failed I2C write retries on the next call. */
+void showString(const char *str) {
+  if (strcmp(str, onScreen) != 0) {
+    clearScreen();
+    displayString((char *)str);
+    if (updateScreen() == HAL_OK) {
+      strcpy(onScreen, str);
+    }
+  }
+}
+
 /* Initialize the oled screen */
 void initScreen() {
   // Wait for the screen to boot
