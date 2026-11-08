@@ -33,8 +33,8 @@ In progress:
 
 ## The board
 
-- STM32F103C8T6 (LQFP48), HSE 16 MHz, LSI RTC (32.768 kHz crystal fitted,
-  LSE not yet enabled)
+- STM32F103C8T6 (LQFP48), HSE 16 MHz, RTC on the 32.768 kHz LSE
+  crystal (kept running by the J5 Vbat battery)
 - Connectors: J1 debug (SWD + 3.3V), J2 mode button, J3 speedo sensor,
   J4 power (12 V -> buck 5 V -> LDO 3.3 V), J5 VBAT (backup battery),
   J7 breakout (3.3V / PA8-PA12 / GND)

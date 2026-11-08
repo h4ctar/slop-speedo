@@ -134,12 +134,11 @@ full-scale km/h (needle mapping) is still to be decided.
 
 ## Persistence
 
-- **Time**: RTC on LSI (40 kHz / 40000 = 1 Hz; +-30% drift — the fitted
-  32.768 kHz crystal X2 is not enabled yet; switching RTC -> LSE in CubeMX is
-  a planned improvement). `rtc.c` keeps a "time set" flag in backup register
-  BKP_DR1 (magic 0x5254): boots skip the 00:00 re-set while the flag survives
-  in the Vbat domain; a full power loss clears it and the clock restarts at
-  00:00 (a CR1220 on J5/VBAT will change that — battery test pending).
+- **Time**: RTC on LSE (32.768 kHz crystal X2), which runs from the Vbat
+  battery on J5, so the clock keeps ticking with the board unpowered. `rtc.c`
+  keeps a "time set" flag in backup register BKP_DR1 (magic 0x5254): boots
+  skip the 00:00 re-set while the flag survives in the Vbat domain. Without
+  the battery, a full power loss clears it and the clock restarts at 00:00.
 - **Settings/odometer/trip** (planned): a wear-leveled record in the F103's
   1 KB flash pages holding the odometer, trip, and the km/h-mi/h unit flag
   (shared via `settings.c`), written periodically, not per pulse.

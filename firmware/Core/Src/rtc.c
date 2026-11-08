@@ -24,8 +24,9 @@
 /* BKP_DR1 magic: non-zero once the RTC time has been set at least once. The
  * register lives in the Vbat domain: any reset that keeps the board powered
  * (flash, debugger, NRST, watchdog, brownout) preserves both the flag and the
- * counter, so MX_RTC_Init skips re-setting the time. Removing all power clears
- * both, and the next boot starts the clock at the default time again. */
+ * counter, so MX_RTC_Init skips re-setting the time. With the J5 Vbat battery
+ * fitted they also survive full power loss (the RTC keeps ticking on LSE);
+ * without it, both are cleared and the clock restarts at the default time. */
 #define RTC_TIME_SET_MAGIC 0x5254U /* "RT" */
 
 /* USER CODE END 0 */
