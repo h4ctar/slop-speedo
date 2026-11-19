@@ -1,11 +1,3 @@
-docs
-images
-speedo-face
-speedo-mount
-
-.settings
-.metadata
-Debug
-Release
-
 hardware/.history/
+mechanical/*.bak
+
