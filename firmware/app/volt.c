@@ -11,6 +11,13 @@
 // The constant is mV per count in thousandths; trim it if a meter disagrees.
 #define MV_PER_COUNT_X1000 4579U
 #define OVERSAMPLE 16
+#define MV_PER_TENTH 100
+// How far past the rounding boundary the reading must go before the displayed
+// tenth changes, so noise around e.g. 7.75 V doesn't flick between 7.7 and 7.8.
+#define HYSTERESIS_MV 40
+#define NO_TENTHS_SHOWN UINT16_MAX
+
+static uint16_t shown_tenths = NO_TENTHS_SHOWN;
 
 void volt_init() {
   HAL_ADCEx_Calibration_Start(&hadc1);
@@ -35,9 +42,22 @@ uint16_t volt_read_battery_mv() {
   return (uint16_t)battery_mv;
 }
 
+static uint16_t volt_tenths_update(uint16_t battery_mv) {
+  uint16_t nearest_tenths = (battery_mv + MV_PER_TENTH / 2) / MV_PER_TENTH;
+  if (shown_tenths == NO_TENTHS_SHOWN) {
+    shown_tenths = nearest_tenths;
+  } else {
+    int32_t offset_mv = (int32_t)battery_mv - (int32_t)shown_tenths * MV_PER_TENTH;
+    int32_t limit_mv = MV_PER_TENTH / 2 + HYSTERESIS_MV;
+    if (offset_mv > limit_mv || offset_mv < -limit_mv) {
+      shown_tenths = nearest_tenths;
+    }
+  }
+  return shown_tenths;
+}
+
 static bool volt_update(ButtonEvent event) {
-  uint16_t battery_mv = volt_read_battery_mv();
-  uint16_t volt_tenths = (battery_mv + 50) / 100;
+  uint16_t volt_tenths = volt_tenths_update(volt_read_battery_mv());
   char value[8];
   snprintf(value, sizeof(value), "%u.%u", volt_tenths / 10, volt_tenths % 10);
   screen_show_value(value, "V");
