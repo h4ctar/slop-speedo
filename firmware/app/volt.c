@@ -8,8 +8,12 @@
 // Divider: 22k from +12V, 4.7k to GND -> V_pin = V_batt * 4.7/26.7. With a
 // 3.3V reference and 12-bit counts:
 //   mV_batt = counts * 3300/4095 * 26.7/4.7 = counts * 4.5786
-// The constant is mV per count in thousandths; trim it if a meter disagrees.
-#define MV_PER_COUNT_X1000 4579U
+// The constant is mV per count in thousandths. Nominal 4579, trimmed to 4507
+// by a meter fit at J4 (5.3/8.0/12.2 V, 2026-11-19, ST-Link unplugged).
+#define MV_PER_COUNT_X1000 4507U
+// The divider taps +12V after the reverse-polarity diode D13, so add its
+// forward drop back to report the voltage at J4 (from the same meter fit).
+#define D13_DROP_MV 298U
 #define OVERSAMPLE 16
 #define MV_PER_TENTH 100
 // How far past the rounding boundary the reading must go before the displayed
@@ -38,7 +42,7 @@ uint16_t volt_read_battery_mv() {
   if (samples == 0) {
     return 0;
   }
-  uint32_t battery_mv = sum * MV_PER_COUNT_X1000 / (samples * 1000U);
+  uint32_t battery_mv = sum * MV_PER_COUNT_X1000 / (samples * 1000U) + D13_DROP_MV;
   return (uint16_t)battery_mv;
 }
 
