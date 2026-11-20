@@ -11,7 +11,7 @@ hall-effect sensor off the stock speedo drive on the front wheel.
 - `firmware/` — STM32CubeMX + HAL project (CMake). Hand-written application
   code in `firmware/app/`; architecture in [`firmware/DESIGN.md`](firmware/DESIGN.md);
   style in [`firmware/CODE_STYLE.md`](firmware/CODE_STYLE.md).
-- `hardware/` — KiCad 8 PCB project (revision 1, built and working). Generated
+- `hardware/` — KiCad 10 PCB project (revision 1, built and working). Generated
   outputs land in `hardware/generated/` and `hardware/JLCPCB/` via CI.
 
 ## Features

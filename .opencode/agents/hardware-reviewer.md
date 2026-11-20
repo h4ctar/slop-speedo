@@ -8,6 +8,9 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
+  - action: "konnect_*"
+    resource: "*"
+    effect: deny
   - action: shell
     resource: "git diff *"
     effect: allow
@@ -37,7 +40,7 @@ permissions:
     effect: allow
 ---
 
-Review the uncommitted changes in this KiCad 8 repo (`git diff` and `git status`; also read new untracked files). Shell is allow-listed: only bare `git diff`/`git status`/`git log`/`git show` work — no pipes, no `git -C`, anything else is denied — so use the read/grep/glob tools for file inspection. The board is `hardware/hardware.kicad_pcb`; revision 1 is already manufactured and appears to work, so any change to copper or footprint placement is suspect by default. Report findings in severity order with file:line references. Report only real problems, not style preferences. If there are none, say so.
+Review the uncommitted changes in this KiCad 10 repo (`git diff` and `git status`; also read new untracked files). Shell is allow-listed: only bare `git diff`/`git status`/`git log`/`git show` work — no pipes, no `git -C`, anything else is denied — so use the read/grep/glob tools for file inspection. The board is `hardware/hardware.kicad_pcb`; revision 1 is already manufactured and appears to work, so any change to copper or footprint placement is suspect by default. Report findings in severity order with file:line references. Report only real problems, not style preferences. If there are none, say so.
 
 Check specifically:
 

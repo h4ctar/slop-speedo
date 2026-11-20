@@ -5,7 +5,7 @@ on: [push]
 jobs:
     kibot:
         runs-on: ubuntu-latest
-        container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+        container: ghcr.io/inti-cmnb/kicad10_auto_full:latest
 
         steps:
             - uses: actions/checkout@v7

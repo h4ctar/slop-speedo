@@ -9,6 +9,28 @@
 
     // PCB works; revisions need a human decision.
     { "action": "edit", "resource": "hardware/*", "effect": "ask" },
+    // Same for Konnect (KiCad MCP): anything that can change the design (or write export files anywhere) asks; inspection/checks don't.
+    { "action": "konnect_*", "resource": "*", "effect": "ask" },
+    { "action": "konnect_get_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_list_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_find_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_check_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_validate_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_audit_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_search_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_query_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_render_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_resolve_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_batch_get_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_run_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_load_*", "resource": "*", "effect": "allow" },
+    { "action": "konnect_unload_toolset", "resource": "*", "effect": "allow" },
+    { "action": "konnect_trace_from_point", "resource": "*", "effect": "allow" },
+    { "action": "konnect_score_placement", "resource": "*", "effect": "allow" },
+    { "action": "konnect_compare_visual_baseline", "resource": "*", "effect": "allow" },
+    { "action": "konnect_estimate_cost", "resource": "*", "effect": "allow" },
+    { "action": "konnect_generate_netlist", "resource": "*", "effect": "allow" },
+    { "action": "konnect_server_stats", "resource": "*", "effect": "allow" },
 
     // Flashing and debugging on real hardware is part of the job: no need to ask.
     { "action": "shell", "resource": "openocd *", "effect": "allow" },

@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, KiCad 8 PCB in `hardware/`, 3D-printed parts in `mechanical/` (FreeCAD, by Ben; `firmware/DESIGN.md` architecture, `firmware/CODE_STYLE.md` style). No tests, no linters.
+Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, KiCad 10 PCB in `hardware/`, 3D-printed parts in `mechanical/` (FreeCAD, by Ben; `firmware/DESIGN.md` architecture, `firmware/CODE_STYLE.md` style). No tests, no linters.
 
 ## Firmware (`firmware/`)
 
@@ -28,6 +28,7 @@ Speedometer/clock gauge: STM32F103 (Blue Pill class) firmware in `firmware/`, Ki
 
 - Revision 1 is built and appears to work. Edits ask for approval; record problems found during testing under "PCB revision notes" in `TODO.md` rather than changing the board on your own initiative.
 - Review PCB and kibot-config changes with the `hardware-reviewer` subagent before committing; it verifies text/attribute edits stay electrically inert and that warning filters don't hide real issues.
-- CI (`.github/workflows/kibot.yml`) runs `kibot` in `hardware/` on every push, using the `ghcr.io/inti-cmnb/kicad8_auto_full` container. The config is `config.kibot.yaml`. ERC and DRC run as preflight checks, and only the library-issue errors are filtered out, so other ERC/DRC errors fail CI.
+- CI (`.github/workflows/kibot.yml`) runs `kibot` in `hardware/` on every push, using the `ghcr.io/inti-cmnb/kicad10_auto_full` container. The config is `config.kibot.yaml`. ERC and DRC run as preflight checks, and only the library-issue errors are filtered out, so other ERC/DRC errors fail CI. The board and project are KiCad 10 format (the schematic and symbol library are still KiCad 8 format until next saved, which KiCad 10 reads fine): don't open or save them with an older KiCad. CI refills zones with KiCad 10 before plotting, so diff its gerbers against revision 1's before re-ordering.
+- Konnect (KiCad MCP server, global OpenCode config) is the preferred way to inspect and check the design: load the `konnect` skill first, and use the `kicad-design-review` subagent for full ERC/DRC/DFM reviews. Live-editor tools need KiCad running with the board open and its IPC API enabled. In `opencode.jsonc`, Konnect's read/check tools are allowed and anything that can change the design asks, the same as `hardware/*` edits. Never edit `.kicad_*` files with text tools.
 - Outputs go to `hardware/generated/` and `hardware/JLCPCB/`, which are CI artifacts, so don't commit them.
 - Custom symbols, footprints and 3D models are in `hardware/lib/`, referenced via the project-local `sym-lib-table` / `fp-lib-table`.
